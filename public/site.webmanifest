@@ -1,0 +1,30 @@
+{
+    "name": "Mario Rossi",
+    "short_name": "Mario Rossi",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "safari-pinned-tab.svg",
+            "sizes": "150x150",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#00124B",
+    "background_color": "#00124B",
+    "display": "standalone"
+}

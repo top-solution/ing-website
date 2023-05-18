@@ -1,0 +1,114 @@
+---
+import { Icon } from "astro-icon";
+
+export type NavItem = {
+  href: string;
+  title: string;
+};
+
+export interface Props {
+  items: NavItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav>
+  <ul>
+    {
+      items.map(({ href, title }) => (
+        <li>
+          <a href={`#${href}`} title={`Go to ${title}`}>
+            <Icon name="mdi:circle-medium" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  function scrollToElement(target?: Element | null) {
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (event: Event) => {
+      event.preventDefault();
+      const href = anchor.getAttribute("href");
+      if (href) {
+        scrollToElement(document.querySelector(href));
+      }
+    });
+  });
+
+  let lastKnownScrollPosition = window.scrollY;
+  let ticking = false;
+
+  function updateCurrentSection() {
+    const positionRatio = lastKnownScrollPosition / window.innerHeight;
+    let sectionIndex = Math.trunc(positionRatio);
+    const visibleRatio = positionRatio - sectionIndex;
+    if (visibleRatio > 0.5) {
+      sectionIndex = sectionIndex + 1;
+    }
+
+    const anchors = document.querySelectorAll("nav a");
+    anchors.forEach((anchor) => anchor.removeAttribute("aria-current"));
+
+    document
+      .querySelector(
+        "nav li:nth-child(" + Math.min(sectionIndex + 1, anchors.length) + ") a"
+      )
+      ?.setAttribute("aria-current", "true");
+  }
+
+  document.addEventListener("scroll", () => {
+    lastKnownScrollPosition = window.scrollY;
+
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateCurrentSection();
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  });
+
+  updateCurrentSection();
+</script>
+
+<style>
+  nav {
+    position: fixed;
+    top: 30%;
+    right: 0;
+    z-index: 1;
+  }
+
+  ul {
+    padding-inline-end: calc(var(--space-m-xl) / 2);
+    margin: 0;
+  }
+
+  li {
+    list-style: none;
+    margin: var(--space-3xs) 0;
+  }
+
+  a {
+    color: var(--text-color);
+    text-decoration: none;
+  }
+
+  a:hover {
+    font-weight: bold;
+  }
+
+  a[aria-current="true"] {
+    color: var(--link-color);
+  }
+</style>

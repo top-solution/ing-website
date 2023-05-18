@@ -1,0 +1,43 @@
+---
+export interface Props {
+  id: string;
+  title: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<footer id={id}>
+  <h2>{title}</h2>
+  <dl>
+    <dt>Head office</dt>
+    <dd>C.so Galileo Ferraris 145, 10128 Torino</dd>
+    <dt>Email</dt>
+    <dd><a href="mailto:m.rossi@ingrossi.it">m.rossi@ingrossi.it</a></dd>
+  </dl>
+</footer>
+
+<style>
+  dl {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  dd,
+  dt {
+    margin: var(--space-2xs) 0;
+  }
+
+  dt {
+    flex: 0 1 35%;
+    text-align: right;
+    font-weight: var(--font-weight-bold);
+    padding-inline-end: var(--space-2xs-xs);
+  }
+
+  dd {
+    flex: 0 0 65%;
+    text-align: left;
+    padding-inline-start: var(--space-2xs-xs);
+  }
+</style>

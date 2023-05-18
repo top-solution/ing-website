@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+	item: CollectionEntry<"landing">;
+}
+
+const {
+	slug,
+	data: { title, claim },
+} = Astro.props.item;
+
+const { Content } = await Astro.props.item.render();
+---
+
+<section id={slug}>
+	<h2>{title}</h2>
+	<Content />
+	<p class="claim">
+		<Fragment set:html={claim} />
+	</p>
+</section>
+
+<style>
+	ul {
+		margin: var(--space-m) 0 var(--space-xl);
+	}
+
+	.claim {
+		text-align: right;
+	}
+</style>

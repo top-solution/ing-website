@@ -1,0 +1,151 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Section from "../components/Section.astro";
+import type { NavItem } from "../components/Nav.astro";
+
+const title = "Mario Rossi";
+const description = "Mario Rossi";
+
+const nav: NavItem[] = [];
+---
+
+<Layout title={title} description={description}>
+	<!-- <Nav items={nav} />
+	<Header title={title}>
+		{"Repellendus in suscipit est repellat quisquam non voluptatibus."}
+	</Header> -->
+	<div class="box-container main-box-container">
+		<div class="box-content main-box-content">
+			<p>
+				{
+					"Lorem ipsum dolor sit amet consectetur. Curabitur neque cursus odio nisi. Aliquet mauris elit mus sollicitudin scelerisque quam. Ornare praesent quisque aliquet commodo tincidunt etiam sed malesuada tincidunt. Arcu magna nisl congue ut odio tincidunt."
+				}
+			</p>
+			<a class="primary-button" href="/pagina-che-non-esiste">About</a>
+		</div>
+	</div>
+	<div class="box-container">
+		<div class="box-content secondary-box-content">
+			<h2>Magni aut sit ad voluptate nam</h2>
+			<p>
+				{
+					"Aspernatur ea consequatur. Expedita nesciunt et id est atque voluptas et et et. Aliquam culpa quis. Aspernatur mollitia est. Et sunt non debitis qui culpa aut reprehenderit. Similique vel atque enim sit voluptate eius qui quia. Explicabo enim culpa nemo ullam recusandae."
+				}
+			</p>
+			<img src="/public/home-background-2.png" alt="" />
+		</div>
+	</div>
+	<div class="box-container blue-box-container">
+		<div class="box-content secondary-box-content">
+			<h2>Impedit reiciendis soluta qui placeat vel ut iste</h2>
+			<p>
+				{
+					"Voluptatibus pariatur rerum architecto voluptatibus numquam vel itaque. Sequi consequatur et assumenda dolor necessitatibus. Ipsa maxime nisi ratione reprehenderit ex laboriosam illum. Fugit itaque ratione exercitationem unde libero harum quo. Illo explicabo vel fugit ipsa."
+				}
+			</p>
+			<img src="/public/home-background-2.png" alt="" />
+		</div>
+	</div>
+	<div class="box-container">
+		<div class="box-content secondary-box-content">
+			<h2>Et ex non officia id ea illo dolor et aut</h2>
+			<p>
+				{
+					"Dolorem et sit iure deserunt dolor suscipit eveniet. Aperiam reiciendis et iste nihil architecto deleniti fuga. Ipsa nostrum quae esse voluptatibus. Rem rem explicabo possimus. Non maiores eveniet. Dolore quo quibusdam distinctio pariatur illum non eos dolores."
+				}
+			</p>
+			<img src="/public/home-background-2.png" alt="" />
+		</div>
+	</div>
+	<div class="box-container cta-box-container">
+		<div class="box-content cta-box-content">
+			<a class="primary-button" href="/pagina-che-non-esiste">
+				Projects
+				<img src="/public/arrow-forward-filled.svg" alt="" />
+			</a>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.box-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		min-height: 30vh;
+		padding: 60px;
+		font-size: var(--step-1);
+	}
+
+	.box-content {
+		display: flex;
+		width: 600px;
+	}
+
+	.box-content > img {
+		width: 100%;
+	}
+
+	.main-box-container {
+		background-image: url("/public/home-background-1.jpg");
+		background-size: cover;
+		color: var(--palette-white);
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	.main-box-content {
+		flex-direction: row;
+		align-items: center;
+		gap: 60px;
+	}
+
+	.main-box-container p {
+		margin: 0;
+	}
+
+	.primary-button {
+		color: var(--palette-white);
+		background-color: var(--palette-blue);
+		padding: 6px 16px;
+		border-radius: 4px;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-size: var(--step--1);
+		font-weight: 500;
+		letter-spacing: 0.4px;
+		transition: background-color 0.25s ease-in-out;
+		display: flex;
+		gap: var(--space-2xs);
+		align-items: center;
+	}
+
+	.primary-button:hover {
+		background-color: var(--palette-blue-hover);
+		color: var(--palette-white);
+	}
+
+	.secondary-box-content {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.blue-box-container {
+		background-color: var(--palette-blue);
+		color: var(--palette-white);
+	}
+
+	.cta-box-container {
+		min-height: 0;
+	}
+
+	.cta-box-content {
+		flex-direction: row;
+		justify-content: flex-end;
+	}
+</style>

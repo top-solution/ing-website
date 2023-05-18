@@ -1,0 +1,29 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<header>
+  <slot name="claim" />
+  <h1>{title}</h1>
+  <slot />
+</header>
+
+<style>
+  header {
+    text-align: center;
+  }
+
+  img {
+    height: calc(var(--step-5) * 4);
+  }
+
+  @media screen and (max-width: 900px) {
+    header {
+      justify-content: flex-start;
+    }
+  }
+</style>
