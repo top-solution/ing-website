@@ -133,3 +133,17 @@ p {
 	margin-block-start: var(--space-xs);
 	margin-block-end: var(--space-xs);
 }
+
+.box-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	min-height: 30vh;
+	padding: 60px;
+	font-size: var(--step-1);
+}
+
+.box-content {
+	display: flex;
+	width: 600px;
+}
