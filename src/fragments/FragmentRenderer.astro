@@ -1,0 +1,29 @@
+---
+import CtaRecord from "./ctaRecord.astro";
+import HeroBannerRecord from "./heroBannerRecord.astro";
+import ServiceBlockRecord from "./serviceBlockRecord.astro";
+
+export interface Props {
+  components: Array<any>;
+}
+
+const { components } = Astro.props;
+---
+
+<>
+  {
+    components.map((component) => {
+      switch (component.__typename) {
+        case "ServiceBlockRecord":
+          return <ServiceBlockRecord {...component} />;
+        case "HeroBannerRecord":
+          return <HeroBannerRecord {...component} />;
+        case "CtaRecord":
+          return <CtaRecord {...component} />;
+
+        default:
+          break;
+      }
+    })
+  }
+</>

@@ -1,0 +1,68 @@
+---
+import { log } from "astro/dist/core/logger/core";
+
+export interface Props {
+  title: string;
+  description: string;
+  image: {
+    id: string;
+    url: string;
+    alt: string | null;
+    format: string;
+  };
+}
+
+const { title, description, image } = Astro.props;
+---
+
+<section class="box-container">
+  <div class="box-content secondary-box-content">
+    <h2>{title}</h2>
+    <p>
+      {description}
+    </p>
+    <img src={image.url} alt={image.alt} />
+  </div>
+</section>
+
+<style>
+  .box-content > img {
+    width: 100%;
+  }
+
+  /* .main-box-container {
+		background-image: url("/public/home-background-1.jpg");
+		background-size: cover;
+		color: var(--palette-white);
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	.main-box-content {
+		flex-direction: row;
+		align-items: center;
+		gap: 60px;
+	}
+
+	.main-box-container p {
+		margin: 0;
+	} */
+  .secondary-box-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .blue-box-container {
+    background-color: var(--palette-blue);
+    color: var(--palette-white);
+  }
+
+  /* .cta-box-container {
+		min-height: 0;
+	}
+
+	.cta-box-content {
+		flex-direction: row;
+		justify-content: flex-end;
+	} */
+</style>

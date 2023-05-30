@@ -5,13 +5,17 @@ import "@fontsource/lato/700.css";
 import "@fontsource/lato/900.css";
 
 import "../styles/global.css";
+import { query } from "../query";
 
 export interface Props {
 	title: string;
 	description: string;
+	slug: string;
 }
 
-const { title, description } = Astro.props;
+console.log(import.meta.env.SECRET_DATOCMS_API_TOKEN);
+
+const { title, description, slug } = Astro.props;
 ---
 
 <!DOCTYPE html>

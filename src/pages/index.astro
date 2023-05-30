@@ -1,4 +1,5 @@
 ---
+import gql from "graphql-tag";
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon";
 import Footer from "../components/Footer.astro";
@@ -7,29 +8,44 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Section from "../components/Section.astro";
 import type { NavItem } from "../components/Nav.astro";
+import FragmentRenderer from "../fragments/FragmentRenderer.astro";
+import { contentQuery } from "../query";
 
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
 const nav: NavItem[] = [];
+
+const contentQueryResult = await contentQuery("home");
+console.log(contentQueryResult.data.page.content);
+
+// const QUERY = gql`
+// 	query () {
+// 		page(filter: { slug: { eq: $slug } }) {
+// 			id
+// 			content {
+// 				__typename
+// 			}
+// 		}
+// 	}
+// `;
+
+// console.log(QUERY);
+
+// // const { slug } = props.match.params;
+// return QueryWrapper(QUERY, null, null, {
+// 	slug: "home", //slug || "home",
+// });
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} slug="home">
 	<!-- <Nav items={nav} />
 	<Header title={title}>
 		{"Repellendus in suscipit est repellat quisquam non voluptatibus."}
 	</Header> -->
-	<section class="box-container main-box-container">
-		<div class="box-content main-box-content">
-			<p>
-				{
-					"Lorem ipsum dolor sit amet consectetur. Curabitur neque cursus odio nisi. Aliquet mauris elit mus sollicitudin scelerisque quam. Ornare praesent quisque aliquet commodo tincidunt etiam sed malesuada tincidunt. Arcu magna nisl congue ut odio tincidunt."
-				}
-			</p>
-			<a class="primary-button" href="/pagina-che-non-esiste">About</a>
-		</div>
-	</section>
-	<section class="box-container">
+	<FragmentRenderer components={contentQueryResult.data.page.content} />
+
+	<!-- <section class="box-container">
 		<div class="box-content secondary-box-content">
 			<h2>Magni aut sit ad voluptate nam</h2>
 			<p>
@@ -61,7 +77,7 @@ const nav: NavItem[] = [];
 			</p>
 			<img src="/public/home-background-2.png" alt="" />
 		</div>
-	</section>
+	</section> -->
 	<div class="box-container cta-box-container">
 		<div class="box-content cta-box-content">
 			<a class="primary-button" href="/pagina-che-non-esiste">
@@ -94,28 +110,6 @@ const nav: NavItem[] = [];
 	.main-box-container p {
 		margin: 0;
 	}
-
-	.primary-button {
-		color: var(--palette-white);
-		background-color: var(--palette-blue);
-		padding: 6px 16px;
-		border-radius: 4px;
-		text-decoration: none;
-		text-transform: uppercase;
-		font-size: var(--step--1);
-		font-weight: 500;
-		letter-spacing: 0.4px;
-		transition: background-color 0.25s ease-in-out;
-		display: flex;
-		gap: var(--space-2xs);
-		align-items: center;
-	}
-
-	.primary-button:hover {
-		background-color: var(--palette-blue-hover);
-		color: var(--palette-white);
-	}
-
 	.secondary-box-content {
 		flex-direction: column;
 		align-items: flex-start;

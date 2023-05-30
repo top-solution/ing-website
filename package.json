@@ -10,8 +10,10 @@
 		"astro": "astro"
 	},
 	"dependencies": {
+		"@apollo/client": "^3.7.14",
 		"@fontsource/lato": "^4.5.10",
 		"astro": "^2.0.11",
-		"astro-icon": "^0.8.0"
+		"astro-icon": "^0.8.0",
+		"graphql-tag": "^2.12.6"
 	}
 }

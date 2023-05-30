@@ -1,0 +1,44 @@
+---
+import CtaRecord from "./ctaRecord.astro";
+
+export interface Props {
+  description: string;
+  cta: {
+    title: string;
+    internalLink: {
+      slug: string;
+    };
+  };
+}
+
+const { description, cta } = Astro.props;
+---
+
+<section class="box-container main-box-container hero-banner">
+  <div class="box-content main-box-content">
+    <p>
+      {description}
+    </p>
+    <CtaRecord {...cta} />
+  </div>
+</section>
+
+<style>
+  .main-box-container {
+    background-image: url("/public/home-background-1.jpg");
+    background-size: cover;
+    color: var(--palette-white);
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .main-box-content {
+    flex-direction: row;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .main-box-container p {
+    margin: 0;
+  }
+</style>
