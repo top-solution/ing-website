@@ -39,7 +39,7 @@
 	--background: var(--palette-white);
 	--text-color: var(--palette-black);
 
-	--font-stack-main: "Lato", sans-serif;
+	--font-stack-main: "Fira sans", sans-serif;
 	--font-size: var(--step-0);
 	--font-weight-regular: 300;
 	--font-weight-bold: 700;
