@@ -95,23 +95,20 @@ const nav: NavItem[] = [];
 		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: center;
-		gap: var(--space-xs);
+		gap: var(--space-m);
 
 	}
 
 	.project {
 		display: flex;
 		flex-direction: column;
-		width: 40%;
 		text-decoration: none;
 		position:relative;
 		min-height: 200px;
 		background-image: url(/public/project-0.png);
 		background-size: cover;
-    	background-position: center;	
-
-
-		
+    	background-position: center;
+		flex: 1 1 100%;	
 	}
 
 	.project:hover .project-title {
@@ -119,7 +116,7 @@ const nav: NavItem[] = [];
 	}
 
 	.project:nth-of-type(3n) {
-		width: 100%
+		flex: 1 1 100%
 	}
 
 	.project-title {
@@ -141,19 +138,28 @@ const nav: NavItem[] = [];
 
 	.project-title>h3{
 		font-weight: 500;
+		text-transform: none;
 	}
 
 
 
 
 	@media screen and (min-width: 600px) {
+		.project {
+			flex: 1 1 40%;	
+		}
 		.project-title {
-			opacity: 0.1;
+			opacity: 0;
 			top: 0;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			transition: opacity 0.25s ease-in-out;
+			text-align: center;
+			gap: 0;
+		}
+		.project-title>p {
+			margin-block-start: 0;
 		}
 	}
 </style>
