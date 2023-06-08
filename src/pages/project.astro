@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Section from "../components/Section.astro";
+import type { NavItem } from "../components/Nav.astro";
+
+const title = "Mario Rossi";
+const description = "Mario Rossi";
+
+const nav: NavItem[] = [];
+---
+
+<Layout title={title} description={description} slug="">
+	<!-- <Nav items={nav} />
+	<Header title={title}>
+		{"Repellendus in suscipit est repellat quisquam non voluptatibus."}
+	</Header> -->
+	<section class="box-container main-box-container">
+		<img src="/public/project-0.png" alt="Project 1" />
+		<h3>Fugit id voluptatibus quae sit corrupti</h3>
+		<dl>
+			<dt>Type</dt>
+			<dd>Nostrum</dd>
+			<dt>Height</dt>
+			<dd>98m</dd>
+			<dt>Year</dt>
+			<dd>1992</dd>
+			<p>
+				Culpa quasi est. Sit explicabo est nisi repellat magnam nihil id
+				reiciendis. Optio culpa sequi error harum blanditiis veritatis labore
+				doloribus laborum. Repellendus veritatis omnis et et facere consequatur.
+				Voluptate quae dicta minima suscipit enim. Quis veniam non expedita
+				earum. Eos sit nobis accusantium sint beatae quaerat. Ad illum vero cum
+				perspiciatis dolor iure ut. Aperiam est quidem autem fugit esse quam
+				voluptates a. Nihil quia est. Ut consequatur eos est voluptatem modi
+				deserunt voluptatem dolor est. Reiciendis accusantium omnis consequuntur
+				officia esse quia fuga recusandae hic. Excepturi ipsum eligendi. Dolores
+				neque commodi est facere dolores aspernatur repellendus non minus.
+			</p>
+			<a href="/projects">Back</a>
+		</dl>
+	</section>
+</Layout>
+
+<style></style>
