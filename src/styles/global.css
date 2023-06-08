@@ -32,6 +32,8 @@
 
 	--palette-blue: #0066CA;
 	--palette-blue-hover: #0055A8;
+	--palette-blue-opacity: rgba(0, 102, 202, 0.9);
+
 	--palette-red: #e74135;
 	--palette-black: #1d1d1d;
 	--palette-white: #ffffff;

@@ -22,7 +22,7 @@ const nav: NavItem[] = [];
 	<section class="box-container main-box-container">
 		<div class="box-content main-box-content">
 			<a class="project" href="/projects/1">
-				<img src="/public/project-0.png" alt="Project 1" />
+				
 				<div class="project-title">
 					<h3>Project 1</h3>
 					<p>Enim quia vero</p>
@@ -30,7 +30,7 @@ const nav: NavItem[] = [];
 			</a>
 
 			<a class="project" href="/projects/2">
-				<img src="/public/project-0.png" alt="Project 2" />
+				
 				<div class="project-title">
 					<h3>Project 2</h3>
 					<p>Distinctio dolorum delenit</p>
@@ -38,7 +38,7 @@ const nav: NavItem[] = [];
 			</a>
 
 			<a class="project" href="/projects/3">
-				<img src="/public/project-0.png" alt="Project 3" />
+				
 				<div class="project-title">
 					<h3>Project 3</h3>
 					<p>
@@ -47,7 +47,7 @@ const nav: NavItem[] = [];
 			</a>
 
 			<a class="project" href="/projects/4">
-				<img src="/public/project-0.png" alt="Project 4" />
+				
 				<div class="project-title">
 					<h3>Project 4</h3>
 					<p>Sint ut officiis suscipit</p>
@@ -55,7 +55,7 @@ const nav: NavItem[] = [];
 			</a>
 
 			<a class="project" href="/projects/5">
-				<img src="/public/project-0.png" alt="Project 5" />
+				
 				<div class="project-title">
 					<h3>Project 5</h3>
 					<p>Est veniam dignissimos</p>
@@ -63,7 +63,7 @@ const nav: NavItem[] = [];
 			</a>
 
 			<a class="project" href="/projects/6">
-				<img src="/public/project-0.png" alt="Project 6" />
+				
 				<div class="project-title">
 					<h3>Project 6</h3>
 					<p>Doloremque impedit laudantium</p>
@@ -71,7 +71,7 @@ const nav: NavItem[] = [];
 			</a>
 
 			<a class="project" href="/projects/7">
-				<img src="/public/project-0.png" alt="Project 7" />
+				
 				<div class="project-title">
 					<h3>Project 7</h3>
 					<p>Non nulla consequatur</p>
@@ -79,7 +79,7 @@ const nav: NavItem[] = [];
 			</a>
 
 			<a class="project" href="/projects/8">
-				<img src="/public/project-0.png" alt="Project 8" />
+				
 				<div class="project-title">
 					<h3>Project 8</h3>
 					<p>Culpa omnis ut rem eius</p>
@@ -104,7 +104,18 @@ const nav: NavItem[] = [];
 		flex-direction: column;
 		width: 40%;
 		text-decoration: none;
+		position:relative;
+		min-height: 200px;
+		background-image: url(/public/project-0.png);
+		background-size: cover;
+    	background-position: center;	
+
+
 		
+	}
+
+	.project:hover .project-title {
+		opacity: 1;
 	}
 
 	.project:nth-of-type(3n) {
@@ -113,17 +124,37 @@ const nav: NavItem[] = [];
 
 	.project-title {
 		color: var(--palette-white);
-		background-color: var(--palette-blue);
 		gap: var(--space-xs);
 		padding: var(--space-2xs);
-		
+		position: absolute;
+    	bottom: 0px;
+    	left: 0px;
+    	right: 0px;
+		background-color: var(--palette-blue-opacity);
 	}
 
 	.project-title>p {
 		font-weight: 300;
+		margin-block-start: var(--space-2xs);
+		margin-block-end: var(--space-3xs);
 	}
 
 	.project-title>h3{
 		font-weight: 500;
 	}
+
+
+
+
+	@media screen and (min-width: 600px) {
+		.project-title {
+			opacity: 0.1;
+			top: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			transition: opacity 0.25s ease-in-out;
+		}
+	}
 </style>
+
