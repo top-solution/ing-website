@@ -44,8 +44,8 @@
 	--font-stack-main: "Fira sans", sans-serif;
 	--font-size: var(--step-0);
 	--font-weight-regular: 300;
-	--font-weight-bold: 700;
-	--font-weight-bolder: 900;
+	--font-weight-bold: 500;
+	--font-weight-bolder: 700;
 }
 
 html {
