@@ -28,7 +28,7 @@ const nav: NavItem[] = [];
 			</ul> 
 			<img src="/public/project-0.png" alt="Project 1" />
 			<h3>Fugit id voluptatibus quae sit corrupti</h3>
-			<dl>
+			<dl class="building-data">
 				<dt>Type</dt>
 				<dd>Nostrum</dd>
 				<dt>Height</dt>
@@ -71,16 +71,16 @@ const nav: NavItem[] = [];
 		margin-block-start: 0;
 		margin-block-end: 0;
 	}
-	dl {
+	.building-data {
 		display: grid;
 		grid-template-columns: max-content auto;
 		margin-block-start: 0;
 		margin-block-end: 0;
 	}
-	dt {
+	.building-data dt {
 		grid-column-start: 1;
 	}
-	dd {
+	.building-data dd {
 		grid-column-start: 2;
 	}
 	.button-container {
