@@ -32,6 +32,8 @@
 
 	--palette-blue: #0066CA;
 	--palette-blue-hover: #0055A8;
+	--palette-blue-opacity: rgba(0, 102, 202, 0.9);
+
 	--palette-red: #e74135;
 	--palette-black: #1d1d1d;
 	--palette-white: #ffffff;
@@ -39,11 +41,11 @@
 	--background: var(--palette-white);
 	--text-color: var(--palette-black);
 
-	--font-stack-main: "Lato", sans-serif;
+	--font-stack-main: "Fira sans", sans-serif;
 	--font-size: var(--step-0);
 	--font-weight-regular: 300;
-	--font-weight-bold: 700;
-	--font-weight-bolder: 900;
+	--font-weight-bold: 500;
+	--font-weight-bolder: 700;
 }
 
 html {
@@ -146,4 +148,24 @@ p {
 .box-content {
 	display: flex;
 	width: 600px;
+}
+
+.primary-button {
+	color: var(--palette-white);
+	background-color: var(--palette-blue);
+	padding: 6px 16px;
+	border-radius: 4px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: var(--step--1);
+	font-weight: 500;
+	letter-spacing: 0.4px;
+	transition: background-color 0.25s ease-in-out;
+	display: flex;
+	gap: var(--space-2xs);
+	align-items: center;
+}
+.primary-button:hover {
+	background-color: var(--palette-blue-hover);
+	color: var(--palette-white);
 }

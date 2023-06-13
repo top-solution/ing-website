@@ -14,21 +14,28 @@ const description = "Mario Rossi";
 const nav: NavItem[] = [];
 ---
 
-<Layout title={title} description={description} slug="">
+<Layout title={title} description={description}>
 	<!-- <Nav items={nav} />
 	<Header title={title}>
 		{"Repellendus in suscipit est repellat quisquam non voluptatibus."}
 	</Header> -->
 	<section class="box-container main-box-container">
-		<img src="/public/project-0.png" alt="Project 1" />
-		<h3>Fugit id voluptatibus quae sit corrupti</h3>
-		<dl>
-			<dt>Type</dt>
-			<dd>Nostrum</dd>
-			<dt>Height</dt>
-			<dd>98m</dd>
-			<dt>Year</dt>
-			<dd>1992</dd>
+		<div class="box-content main-box-content">
+			<ul class="breadcrumb">
+				<li><a href="/">Projects</a></li>
+				<img src="/public/chevron-right.svg" alt="" />
+				<li class="project-name">Name project</li>
+			</ul> 
+			<img src="/public/project-0.png" alt="Project 1" />
+			<h3>Fugit id voluptatibus quae sit corrupti</h3>
+			<dl class="building-data">
+				<dt>Type</dt>
+				<dd>Nostrum</dd>
+				<dt>Height</dt>
+				<dd>98m</dd>
+				<dt>Year</dt>
+				<dd>1992</dd>
+			</dl>
 			<p>
 				Culpa quasi est. Sit explicabo est nisi repellat magnam nihil id
 				reiciendis. Optio culpa sequi error harum blanditiis veritatis labore
@@ -41,9 +48,61 @@ const nav: NavItem[] = [];
 				officia esse quia fuga recusandae hic. Excepturi ipsum eligendi. Dolores
 				neque commodi est facere dolores aspernatur repellendus non minus.
 			</p>
-			<a href="/projects">Back</a>
-		</dl>
+			<div class="button-container"> 
+				<a class="primary-button" href="/projects">Back</a> 
+			</div>
+		</div>
 	</section>
 </Layout>
 
-<style></style>
+<style>
+	.main-box-content {
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: stretch;
+    	flex-direction: column;
+		gap: var(--space-xs);
+	}
+	h3 {
+		text-transform: none;
+		margin-block-end: 0;
+	}
+	p {
+		margin-block-start: 0;
+		margin-block-end: 0;
+	}
+	.building-data {
+		display: grid;
+		grid-template-columns: max-content auto;
+		margin-block-start: 0;
+		margin-block-end: 0;
+	}
+	.building-data dt {
+		grid-column-start: 1;
+	}
+	.building-data dd {
+		grid-column-start: 2;
+	}
+	.button-container {
+		display: flex;
+	} 
+	.breadcrumb {
+		list-style: none;
+		flex-direction: row;
+		display: flex;
+		gap: var(--space-xs);
+		margin-block-start: 0;
+		margin-block-end: 0;
+		padding-inline-start: 0;
+	}
+	.breadcrumb img {
+		height: 24px;
+	}
+	.breadcrumb li {
+		margin-block-start: 0;
+		margin-block-end: 0;
+	}
+	.project-name {
+		font-weight: 500;
+	}
+</style>
