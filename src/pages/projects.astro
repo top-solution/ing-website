@@ -7,88 +7,19 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Section from "../components/Section.astro";
 import type { NavItem } from "../components/Nav.astro";
+import { contentQuery } from "../query";
 
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
 const nav: NavItem[] = [];
+const contentQueryResult = await contentQuery("projects");
+console.log(contentQueryResult.data?.page?.content);
+
 ---
 
-<Layout title={title} description={description}>
-	<!-- <Nav items={nav} />
-	<Header title={title}>
-		{"Repellendus in suscipit est repellat quisquam non voluptatibus."}
-	</Header> -->
-	<section class="box-container main-box-container">
-		<div class="box-content main-box-content">
-			<a href="/projects/1">
-				<img src="/public/project-0.png" alt="Project 1" />
-				<div>
-					<h3>Project 1</h3>
-					<p>Enim quia vero</p>
-				</div>
-			</a>
-
-			<a href="/projects/2">
-				<img src="/public/project-0.png" alt="Project 2" />
-				<div>
-					<h3>Project 2</h3>
-					<p>Distinctio dolorum deleniti laboriosam eveniet modi</p>
-				</div>
-			</a>
-
-			<a href="/projects/3">
-				<img src="/public/project-0.png" alt="Project 3" />
-				<div>
-					<h3>Project 3</h3>
-					<p>
-						Voluptatem dolor voluptas praesentium aut necessitatibus fugit quam
-						dolores vel
-					</p>
-				</div>
-			</a>
-
-			<a href="/projects/4">
-				<img src="/public/project-0.png" alt="Project 4" />
-				<div>
-					<h3>Project 4</h3>
-					<p>Sint ut officiis suscipit</p>
-				</div>
-			</a>
-
-			<a href="/projects/5">
-				<img src="/public/project-0.png" alt="Project 5" />
-				<div>
-					<h3>Project 5</h3>
-					<p>Est veniam dignissimos nostrum</p>
-				</div>
-			</a>
-
-			<a href="/projects/6">
-				<img src="/public/project-0.png" alt="Project 6" />
-				<div>
-					<h3>Project 6</h3>
-					<p>Doloremque impedit laudantium quia at</p>
-				</div>
-			</a>
-
-			<a href="/projects/7">
-				<img src="/public/project-0.png" alt="Project 7" />
-				<div>
-					<h3>Project 7</h3>
-					<p>Non nulla consequatur</p>
-				</div>
-			</a>
-
-			<a href="/projects/8">
-				<img src="/public/project-0.png" alt="Project 8" />
-				<div>
-					<h3>Project 8</h3>
-					<p>Culpa omnis ut rem eius labore</p>
-				</div>
-			</a>
-		</div>
-	</section>
+<Layout title={title} description={description} slug="projects">
+	<pre>{JSON.stringify(contentQueryResult, null, 4)}</pre>
 </Layout>
 
 <style></style>

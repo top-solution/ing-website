@@ -1,5 +1,3 @@
-
-
 export const ServiceBlockRecordQuery = `
   fragment serviceBlockRecord on ServiceBlockRecord {
     __typename
@@ -42,6 +40,20 @@ export const CtaRecordQuery = `
   }
 `;
 
+export const ProjectsListRecord = `
+  fragment projectsListRecord on ProjectsListRecord {
+    __typename
+    projects {
+      name
+      image {
+        id
+        url
+        alt
+        format
+      }
+    }
+  }
+`;
 
 export const query = `
   query Pages($slug: String) {
@@ -51,16 +63,16 @@ export const query = `
         __typename
         ...heroBannerRecord
         ...serviceBlockRecord
+        ...projectsListRecord
       }
     }
   }
   
   ${ServiceBlockRecordQuery}
-
   ${HeroBannerRecordQuery}
-
   ${CtaRecordQuery}
-`
+  ${ProjectsListRecord}
+`;
 
 export function contentQuery(slug: string) {
   return fetch("https://graphql.datocms.com/preview", {
@@ -80,6 +92,6 @@ export function contentQuery(slug: string) {
     .then((result) => {
       // console.log(new Date());
       // console.log(JSON.stringify(result, null, 4));
-      return result
+      return result;
     });
-} 
+}
