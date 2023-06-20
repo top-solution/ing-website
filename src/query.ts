@@ -44,6 +44,23 @@ export const ProjectsListRecord = `
   fragment projectsListRecord on ProjectsListRecord {
     __typename
     projects {
+      slug
+      name
+      image {
+        id
+        url
+        alt
+        format
+      }
+    }
+  }
+`;
+
+export const ProjectBlockRecord = `
+  fragment projectBlockRecord on ProjectBlockRecord {
+    __typename
+    project {
+      slug
       name
       image {
         id
@@ -64,6 +81,7 @@ export const query = `
         ...heroBannerRecord
         ...serviceBlockRecord
         ...projectsListRecord
+        ...projectBlockRecord
       }
     }
   }
@@ -72,6 +90,7 @@ export const query = `
   ${HeroBannerRecordQuery}
   ${CtaRecordQuery}
   ${ProjectsListRecord}
+  ${ProjectBlockRecord}
 `;
 
 export function contentQuery(slug: string) {
