@@ -72,16 +72,65 @@ export const ProjectBlockRecord = `
   }
 `;
 
+export const TextBlockRecord = `
+  fragment textBlockRecord on TextBlockRecord {
+    __typename
+    title
+    content
+  }
+`;
+
+export const PersonalInfoBlockRecord = `
+  fragment personalInfoBlockRecord on PersonalInfoBlockRecord {
+    __typename
+    personalInfo {
+      address
+      phone
+      mobile
+      emails
+      partitaIva
+    }
+  }
+  `;
+
+export const MapBlockRecord = `
+  fragment mapBlockRecord on MapBlockRecord {
+    __typename
+    map {
+      id
+      url
+      alt
+      format
+    }  
+  }
+`;
+
+// address
+// phone
+// mobile
+// emails
 export const query = `
   query Pages($slug: String) {
     page(filter: { slug: { eq: $slug } }) {
       id
+      slug
+      personalInfo {
+        __typename
+        address
+        phone
+        mobile
+        emails
+        partitaIva
+      }
       content {
         __typename
         ...heroBannerRecord
         ...serviceBlockRecord
         ...projectsListRecord
         ...projectBlockRecord
+        ...textBlockRecord
+        ...personalInfoBlockRecord
+        ...mapBlockRecord
       }
     }
   }
@@ -91,6 +140,9 @@ export const query = `
   ${CtaRecordQuery}
   ${ProjectsListRecord}
   ${ProjectBlockRecord}
+  ${TextBlockRecord}
+  ${PersonalInfoBlockRecord}
+  ${MapBlockRecord}
 `;
 
 export function contentQuery(slug: string) {

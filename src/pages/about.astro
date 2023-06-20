@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Section from "../components/Section.astro";
+import type { NavItem } from "../components/Nav.astro";
+import { contentQuery } from "../query";
+
+const title = "Mario Rossi";
+const description = "Mario Rossi";
+
+const nav: NavItem[] = [];
+const contentQueryResult = await contentQuery("about");
+console.log(contentQueryResult.data?.page?.content);
+
+---
+
+<Layout title={title} description={description} slug="projects">
+	<pre>{JSON.stringify(contentQueryResult, null, 4)}</pre>
+</Layout>
+
+<style></style>
