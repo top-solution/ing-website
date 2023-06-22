@@ -1,0 +1,89 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Section from "../components/Section.astro";
+import type { NavItem } from "../components/Nav.astro";
+
+const title = "Mario Rossi";
+const description = "Mario Rossi";
+
+const nav: NavItem[] = [];
+---
+
+<Layout title={title} description={description}>
+	<!-- <Nav items={nav} />
+	<Header title={title}>
+		{"Repellendus in suscipit est repellat quisquam non voluptatibus."}
+	</Header> -->
+	
+		
+	
+	<section class="box-container blue-box-container">
+		<div class="box-content secondary-box-content">
+				<a href="/public/maps.png" target="_blank">
+				<img src="/public/maps.png" alt="">
+			</a>
+		</div>
+	</section>
+	<section class="box-container">
+		<div class="box-content secondary-box-content">
+			<ul class="contacts">
+				<li>
+					<img src="/public/phone-outline.svg" alt="" /> 
+					<span>
+						tel/fax 
+						<a href="tel:+39 011 23456789">
+							+39 011 23456789
+						</a>
+					</span>
+				</li>
+				<li><img src="/public/cellphone.svg" alt="" />
+					<span>
+					mobile 
+					<a href="tel:123 456 789">
+					123 456 789
+					</a>
+					</span>	
+				</li>
+				<li><img src="/public/email-outline.svg" alt="" />
+					<span>
+						<a href="mailto:a.rossi@ingrossi.it">
+						a.rossi@ingrossi.it
+						</a>
+					</span>
+				</li>
+				<li><img src="/public/email-outline.svg" alt="" />
+					<span>
+						<a href="mailto:studio@ingrossi.it">
+							studio@ingrossi.it
+						</a>
+					</span>
+				</li>
+				<li><img src="/public/map-marker-outline.svg" alt="" />C.so Verde 52, 10128 Torino</li>
+			</ul>
+		</div>
+	</section>
+	
+</Layout>
+
+<style>
+	.blue-box-container {
+		background-color: var(--palette-blue);
+		color: var(--palette-white);
+	}
+	.contacts {
+		list-style: none;
+	}
+	.contacts li {
+		display: flex;
+    	flex-direction: row;
+    	gap: var(--space-s);
+	}
+	.box-content img {
+		max-width: 100%;
+	}
+</style>
