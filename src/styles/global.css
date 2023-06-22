@@ -94,6 +94,7 @@ h1 {
 
 h2 {
 	font-size: var(--step-3);
+	line-height: var(--step-3);
 }
 
 h3 {
@@ -119,7 +120,6 @@ footer,
 section {
 	min-height: 100%;
 	padding: var(--space-s-m) var(--space-l-xl);
-	max-width: 55rem;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
