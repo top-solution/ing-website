@@ -1,5 +1,6 @@
 ---
 import BoxContainer from "./BoxContainer.astro";
+import Button from "./Button.astro";
 const {title, backgroundImage, ctaText, ctaHref, section } = Astro.props;
 
 const {Content} = await section.render()
@@ -19,7 +20,7 @@ if (backgroundImage) {
   <Content/>
   {
     ctaText && ctaHref ? (
-      <a class="primary-button" href={ctaHref}>{ctaText}</a>
+      <Button href={ctaHref}>{ctaText}</Button>
     ) : null
   }
 </BoxContainer>
