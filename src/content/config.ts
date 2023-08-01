@@ -13,6 +13,27 @@ export const homepageBlockCollection = defineCollection({
   schema: HomepageBlockSchema,
 });
 
+const ContactsSchema = z.object({
+  phone: z.string().optional(),
+  mobile: z.string().optional(),
+  emails: z.string().array(),
+  address: z.string().optional(),
+  addressHref: z.string().optional(),
+  links: z
+    .object({
+      title: z.string(),
+      href: z.string(),
+    })
+    .array(),
+});
+
+export type Contacts = z.infer<typeof ContactsSchema>;
+
+export const contactsCollection = defineCollection({
+  schema: ContactsSchema,
+});
+
 export const collections = {
   homepage: homepageBlockCollection,
+  contacts: contactsCollection,
 };
