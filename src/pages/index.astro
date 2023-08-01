@@ -10,7 +10,7 @@ const description = "Mario Rossi";
 const allLandingSections = await getCollection('homepage');
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} activeHeader="home">
 	{
 		allLandingSections.map(section => (
 			<HomeSection
