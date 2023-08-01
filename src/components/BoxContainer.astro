@@ -1,0 +1,78 @@
+---
+const { variant, backgroundImage } = Astro.props;
+---
+
+
+<section class={`box-container ${variant}-box-container`} style={`background-image: url(${backgroundImage})`}>
+  <div class={`box-content ${variant}-box-content`}>
+    <slot />
+  </div>
+</section>
+
+
+
+<style>
+  .box-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 30vh;
+    padding: 60px;
+    font-size: var(--step-1);
+  }
+
+  .box-content {
+    display: flex;
+    width: 600px;
+    max-width: 100%;
+  }
+
+  /* FIXME: */
+  /* .box-content p>img {
+		width: 100%;
+	} */
+
+	.main-box-container {
+		background-size: cover;
+		color: var(--palette-white);
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	.main-box-content {
+		flex-direction: row;
+		align-items: center;
+		gap: 60px;
+	}
+
+	.main-box-container p {
+		margin: 0;
+	}
+
+	.secondary-box-content {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.secondary-box-container:nth-of-type(2n+1) {
+		background-color: var(--palette-blue);
+		color: var(--palette-white);
+	}
+
+	.cta-box-container {
+		min-height: 0;
+	}
+
+	.cta-box-content {
+		flex-direction: row;
+		justify-content: flex-end;
+	}
+
+	@media screen and (max-width: 600px) {
+		.main-box-content {
+			flex-direction: column;
+			align-items: flex-end;
+			gap: var(--space-s);
+		}
+	}
+</style>

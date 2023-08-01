@@ -136,11 +136,6 @@ p {
 	font-size: var(--step-1);
 }
 
-.box-content {
-	display: flex;
-	width: 600px;
-}
-
 .primary-button {
 	color: var(--palette-white);
 	background-color: var(--palette-blue);

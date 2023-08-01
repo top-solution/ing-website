@@ -1,0 +1,28 @@
+---
+import BoxContainer from "./BoxContainer.astro";
+const {title, backgroundImage, ctaText, ctaHref, section } = Astro.props;
+
+const {Content} = await section.render()
+
+let variant = 'secondary'
+if (backgroundImage) {
+  variant = 'main'
+} else if (ctaText) {
+  variant = 'cta'
+}
+
+
+---
+
+<BoxContainer variant={variant} backgroundImage={backgroundImage}>
+  <h2>{title}</h2>
+  <Content/>
+  {
+    ctaText && ctaHref ? (
+      <a class="primary-button" href={ctaHref}>{ctaText}</a>
+    ) : null
+  }
+</BoxContainer>
+
+<style>
+</style>

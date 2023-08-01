@@ -1,0 +1,4 @@
+---
+ctaText: Projects
+ctaHref: "/projects"
+---

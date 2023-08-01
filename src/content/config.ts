@@ -1,13 +1,18 @@
-import { z, defineCollection } from 'astro:content';
+import { z, defineCollection } from "astro:content";
 
-const landingCollection = defineCollection({
-  schema: z.object({
-    sortOrder: z.number(),
-    title: z.string(),
-    claim: z.string(),
-  }),
+const HomepageBlockSchema = z.object({
+  title: z.string().optional(),
+  backgroundImage: z.string().optional(),
+  ctaText: z.string().optional(),
+  ctaHref: z.string().optional(),
+});
+
+export type HomepageBlock = z.infer<typeof HomepageBlockSchema>;
+
+export const homepageBlockCollection = defineCollection({
+  schema: HomepageBlockSchema,
 });
 
 export const collections = {
-  'landing': landingCollection,
+  homepage: homepageBlockCollection,
 };
