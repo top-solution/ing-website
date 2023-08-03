@@ -47,3 +47,18 @@ export const collections = {
   homepage: homepageBlockCollection,
   contacts: contactsCollection,
 };
+
+const ProjectSchema = z.object({
+  image: z.string().optional(),
+  title: z.string().optional(),
+  description: z.string().optional(),
+  projectType: z.string().optional(),
+  height: z.string().optional(),
+  year: z.string().optional(),
+});
+
+export type Project = z.infer<typeof ProjectSchema>;
+
+export const ProjectCollection = defineCollection({
+  schema: ProjectSchema,
+});

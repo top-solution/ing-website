@@ -1,101 +1,42 @@
 ---
 import { getCollection } from "astro:content";
-import { Icon } from "astro-icon";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
-import Nav from "../components/Nav.astro";
-import Section from "../components/Section.astro";
-import type { NavItem } from "../components/Nav.astro";
+import BoxContainer from "../components/BoxContainer.astro";
 
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
-const nav: NavItem[] = [];
+const allProjects = await getCollection('projects');
+
 ---
 
-<Layout title={title} description={description}>
-	<!-- <Nav items={nav} />
-	<Header title={title}>
-		{"Repellendus in suscipit est repellat quisquam non voluptatibus."}
-	</Header> -->
-	<section class="box-container main-box-container">
-		<div class="box-content main-box-content">
-			<a class="project" href="/projects/1">
-				
-				<div class="project-title">
-					<h3>Project 1</h3>
-					<p>Enim quia vero</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/2">
-				
-				<div class="project-title">
-					<h3>Project 2</h3>
-					<p>Distinctio dolorum delenit</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/3">
-				
-				<div class="project-title">
-					<h3>Project 3</h3>
-					<p>
-						Voluptatem dolor voluptas</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/4">
-				
-				<div class="project-title">
-					<h3>Project 4</h3>
-					<p>Sint ut officiis suscipit</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/5">
-				
-				<div class="project-title">
-					<h3>Project 5</h3>
-					<p>Est veniam dignissimos</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/6">
-				
-				<div class="project-title">
-					<h3>Project 6</h3>
-					<p>Doloremque impedit laudantium</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/7">
-				
-				<div class="project-title">
-					<h3>Project 7</h3>
-					<p>Non nulla consequatur</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/8">
-				
-				<div class="project-title">
-					<h3>Project 8</h3>
-					<p>Culpa omnis ut rem eius</p>
-				</div>
-			</a>
+<Layout title={title} description={description} activeHeader="projects">
+	<BoxContainer variant="main">
+		<div class="projects">
+			{
+				[...allProjects, ...allProjects].map(section => (
+					<a class="project" href={section.slug} style={`background-image: url(${section.data.image});`}>
+						<div class="project-title">
+							<h3>{section.data.title}</h3>
+							<p>{section.data.description}</p>
+						</div>
+					</a>
+				))
+			}
 		</div>
-	</section>
+	</BoxContainer>
 </Layout>
 
 <style>
-	.main-box-content {
+	/* FIXME:  */
+	:global(.projects) {
+		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: center;
 		gap: var(--space-m);
+		width: 100%;
 
 	}
 
@@ -105,7 +46,6 @@ const nav: NavItem[] = [];
 		text-decoration: none;
 		position:relative;
 		min-height: 200px;
-		background-image: url(/public/project-0.png);
 		background-size: cover;
     	background-position: center;
 		flex: 1 1 100%;	
