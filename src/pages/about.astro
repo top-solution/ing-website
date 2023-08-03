@@ -7,41 +7,26 @@ import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import Section from "../components/Section.astro";
 import type { NavItem } from "../components/Nav.astro";
+import HomeSection from "../components/HomeSection.astro";
 
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
-const nav: NavItem[] = [];
+const allAboutSections = await getCollection('about');
+
+console.log(allAboutSections)
+
 ---
 
-<Layout title={title} description={description}>
-	<!-- <Nav items={nav} />
-	<Header title={title}>
-		{"Repellendus in suscipit est repellat quisquam non voluptatibus."}
-	</Header> -->
-	
-		
-	
-	<section class="box-container blue-box-container">
-		<div class="box-content secondary-box-content">
-			<p>
-				{
-					"Voluptatibus pariatur rerum architecto voluptatibus numquam vel itaque. Sequi consequatur et assumenda dolor necessitatibus. Ipsa maxime nisi ratione reprehenderit ex laboriosam illum. Fugit itaque ratione exercitationem unde libero harum quo. Illo explicabo vel fugit ipsa."
-				}
-			</p>
-		</div>
-	</section>
-	<section class="box-container">
-		<div class="box-content secondary-box-content">
-			<h2>Et ex non officia id ea illo dolor et aut</h2>
-			<p>
-				{
-					"Dolorem et sit iure deserunt dolor suscipit eveniet. Aperiam reiciendis et iste nihil architecto deleniti fuga. Ipsa nostrum quae esse voluptatibus. Rem rem explicabo possimus. Non maiores eveniet. Dolore quo quibusdam distinctio pariatur illum non eos dolores."
-				}
-			</p>
-		</div>
-	</section>
-	
+<Layout title={title} description={description} activeHeader="home">
+	{
+		allAboutSections.map(section => (
+			<HomeSection
+				title={section.data.title}
+				section={section}
+			/>
+		))
+	}
 </Layout>
 
 <style>

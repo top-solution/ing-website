@@ -13,6 +13,16 @@ export const homepageBlockCollection = defineCollection({
   schema: HomepageBlockSchema,
 });
 
+const AboutBlockSchema = z.object({
+  title: z.string().optional(),
+});
+
+export type AboutBlock = z.infer<typeof AboutBlockSchema>;
+
+export const AboutBlockCollection = defineCollection({
+  schema: AboutBlockSchema,
+});
+
 const ContactsSchema = z.object({
   phone: z.string().optional(),
   mobile: z.string().optional(),
