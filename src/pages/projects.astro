@@ -6,16 +6,19 @@ import BoxContainer from "../components/BoxContainer.astro";
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
-const allProjects = await getCollection('projects');
-
+const allProjects = await getCollection("projects");
 ---
 
 <Layout title={title} description={description} activeHeader="projects">
 	<BoxContainer variant="wrapper">
 		<div class="projects">
 			{
-				allProjects.map(section => (
-					<a class="project" href={`/projects/${section.slug}`} style={section.data.image ? `background-image: url(${section.data.image});` : ''}>
+				allProjects.map((section) => (
+					<a
+						class="project"
+						href={`/projects/${section.slug}`}
+						style={`background-image: url(${section.data.image});`}
+					>
 						<div class="project-title">
 							<h3>{section.data.title}</h3>
 							<p>{section.data.description}</p>
@@ -43,11 +46,11 @@ const allProjects = await getCollection('projects');
 		display: flex;
 		flex-direction: column;
 		text-decoration: none;
-		position:relative;
+		position: relative;
 		min-height: 200px;
 		background-size: cover;
-    	background-position: center;
-		flex: 1 1 100%;	
+		background-position: center;
+		flex: 1 1 100%;
 	}
 
 	.project:hover .project-title {
@@ -55,7 +58,7 @@ const allProjects = await getCollection('projects');
 	}
 
 	.project:nth-of-type(3n) {
-		flex: 1 1 100%
+		flex: 1 1 100%;
 	}
 
 	.project-title {
@@ -63,29 +66,26 @@ const allProjects = await getCollection('projects');
 		gap: var(--space-xs);
 		padding: var(--space-2xs);
 		position: absolute;
-    	bottom: 0px;
-    	left: 0px;
-    	right: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
 		background-color: var(--palette-blue-opacity);
 	}
 
-	.project-title>p {
+	.project-title > p {
 		font-weight: 300;
 		margin-block-start: var(--space-2xs);
 		margin-block-end: var(--space-3xs);
 	}
 
-	.project-title>h3{
+	.project-title > h3 {
 		font-weight: 500;
 		text-transform: none;
 	}
 
-
-
-
 	@media screen and (min-width: 600px) {
 		.project {
-			flex: 1 1 40%;	
+			flex: 1 1 40%;
 		}
 		.project-title {
 			opacity: 0;
@@ -97,9 +97,8 @@ const allProjects = await getCollection('projects');
 			text-align: center;
 			gap: 0;
 		}
-		.project-title>p {
+		.project-title > p {
 			margin-block-start: 0;
 		}
 	}
 </style>
-
