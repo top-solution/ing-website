@@ -1,6 +1,6 @@
 ---
-image: "public/project-0.png"
-title: "Okey"
+image: "public/klimt.jpg"
+title: "Klimt"
 description: "Libero qui quod dolor reiciendis"
 projectType: "Ingengeria strutturale"
 height: "14m"

@@ -1,10 +1,10 @@
 ---
-image: "public/lesly.jpg"
-title: "Lesly"
+image: "public/leonardo.jpg"
+title: "Leonardo"
 description: "Voluptates a voluptatem et"
 projectType: "Ingengneria sismica"
 height: "27m"
-year: "2015/16"
+year: "2022/23"
 ---
 
 Voluptates a voluptatem et. Aut est consequuntur id corrupti esse numquam ex vero. Consequuntur earum itaque amet.
