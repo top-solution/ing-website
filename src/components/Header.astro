@@ -11,16 +11,16 @@ const { active } = Astro.props;
     <img src="/public/logo-full-dark.svg" alt="Ingegnere Mario Rossi" />
   </div>
   <ul class="header-menu">
-    <li class={active === 'home' ? "menu-active" : ''}>
+    <li class={active === "home" ? "menu-active" : ""}>
       <a href="/">Home</a>
     </li>
-    <li class={active === 'projects' ? "menu-active" : ''}>
+    <li class={active === "projects" ? "menu-active" : ""}>
       <a href="/projects">Projects</a>
     </li>
-    <li class={active === 'about' ? "menu-active" : ''}>
+    <li class={active === "about" ? "menu-active" : ""}>
       <a href="/about">About</a>
     </li>
-    <li class={active === 'contacts' ? "menu-active" : ''}>
+    <li class={active === "contacts" ? "menu-active" : ""}>
       <a href="/contacts">Contacts</a>
     </li>
   </ul>
@@ -42,8 +42,8 @@ const { active } = Astro.props;
     flex-direction: row;
     gap: var(--space-xl);
     justify-content: space-between;
-    max-width: 600px;
-    min-width: 280px;
+    max-width: var(--breakpoint-600);
+    min-width: var(--breakpoint-280);
     padding-inline-start: 0;
     font-weight: var(--font-weight-bold);
     font-size: var(--step-2);

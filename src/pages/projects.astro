@@ -31,7 +31,6 @@ const allProjects = await getCollection("projects");
 </Layout>
 
 <style>
-	/* FIXME:  */
 	:global(.projects) {
 		display: flex;
 		flex-direction: row;
@@ -40,6 +39,7 @@ const allProjects = await getCollection("projects");
 		align-items: center;
 		gap: var(--space-m);
 		width: 100%;
+		padding-block-end: var(--space-m);
 	}
 
 	.project {
@@ -47,7 +47,7 @@ const allProjects = await getCollection("projects");
 		flex-direction: column;
 		text-decoration: none;
 		position: relative;
-		min-height: 200px;
+		min-height: var(--breakpoint-200);
 		background-size: cover;
 		background-position: center;
 		flex: 1 1 100%;
@@ -73,13 +73,13 @@ const allProjects = await getCollection("projects");
 	}
 
 	.project-title > p {
-		font-weight: 300;
+		font-weight: var(--font-weight-regula);
 		margin-block-start: var(--space-2xs);
 		margin-block-end: var(--space-3xs);
 	}
 
 	.project-title > h3 {
-		font-weight: 500;
+		font-weight: var(--font-weight-bold);
 		text-transform: none;
 	}
 

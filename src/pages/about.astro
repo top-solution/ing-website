@@ -12,17 +12,13 @@ import HomeSection from "../components/HomeSection.astro";
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
-const allAboutSections = await getCollection('about');
-
+const allAboutSections = await getCollection("about");
 ---
 
-<Layout title={title} description={description} activeHeader="home">
+<Layout title={title} description={description} activeHeader="about">
 	{
-		allAboutSections.map(section => (
-			<HomeSection
-				title={section.data.title}
-				section={section}
-			/>
+		allAboutSections.map((section) => (
+			<HomeSection title={section.data.title} section={section} />
 		))
 	}
 </Layout>
@@ -43,7 +39,7 @@ const allAboutSections = await getCollection('about');
 	.main-box-content {
 		flex-direction: row;
 		align-items: center;
-		gap: 60px;
+		gap: var(--space-m);
 	}
 
 	.main-box-container p {

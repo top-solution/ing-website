@@ -22,13 +22,13 @@ const { variant, backgroundImage } = Astro.props;
 		flex-direction: row;
 		justify-content: center;
 		min-height: 30vh;
-		padding: 60px;
+		padding: var(--space-m);
 		font-size: var(--step-1);
 	}
 
 	.box-content {
 		display: flex;
-		width: 600px;
+		width: var(--breakpoint-600);
 		max-width: 100%;
 	}
 
@@ -47,7 +47,7 @@ const { variant, backgroundImage } = Astro.props;
 	.main-box-content {
 		flex-direction: row;
 		align-items: center;
-		gap: 60px;
+		gap: var(--space-m);
 	}
 
 	.main-box-container p {

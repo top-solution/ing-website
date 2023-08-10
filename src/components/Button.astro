@@ -1,7 +1,5 @@
 ---
 const { href } = Astro.props;
-
-
 ---
 
 <a class="primary-button" href={href} rel="noopener noreferrer">
@@ -12,12 +10,12 @@ const { href } = Astro.props;
   .primary-button {
     color: var(--palette-white);
     background-color: var(--palette-blue);
-    padding: 6px 16px;
+    padding: var(--space-2xs);
     border-radius: 4px;
     text-decoration: none;
     text-transform: uppercase;
     font-size: var(--step--1);
-    font-weight: 500;
+    font-weight: var(--font-weight-bold);
     letter-spacing: 0.4px;
     transition: background-color 0.25s ease-in-out;
     display: flex;

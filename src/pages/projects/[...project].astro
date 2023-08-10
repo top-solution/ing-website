@@ -6,20 +6,17 @@ import BoxContainer from "../../components/BoxContainer.astro";
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
-
 export async function getStaticPaths() {
-	const allProjects = await getCollection('projects');
-  return allProjects.map(({ slug, ...sectionProps }) => {
-    return {
-      params: { project: slug },
-      props: { project: sectionProps },
-    };
-  });
+	const allProjects = await getCollection("projects");
+	return allProjects.map(({ slug, ...sectionProps }) => {
+		return {
+			params: { project: slug },
+			props: { project: sectionProps },
+		};
+	});
 }
 
 const { project } = Astro.props;
-
-
 ---
 
 <Layout title={title} description={description} activeHeader="projects">
@@ -29,8 +26,12 @@ const { project } = Astro.props;
 				<li><a href="/projects">Projects</a></li>
 				<img src="/public/chevron-right.svg" alt="" />
 				<li class="project-name">{project.data.title}</li>
-			</ul> 
-			<img src={`/${project.data.image}`} alt={project.data.title} />
+			</ul>
+			<img
+				class="project-image"
+				src={`/${project.data.image}`}
+				alt={project.data.title}
+			/>
 			<h3>{project.data.title}</h3>
 			<dl class="building-data">
 				<dt>Type</dt>
@@ -42,18 +43,20 @@ const { project } = Astro.props;
 			</dl>
 			<p>
 				Culpa quasi est. Sit explicabo est nisi repellat magnam nihil id
-				reiciendis. Optio culpa sequi error harum blanditiis veritatis labore
-				doloribus laborum. Repellendus veritatis omnis et et facere consequatur.
-				Voluptate quae dicta minima suscipit enim. Quis veniam non expedita
-				earum. Eos sit nobis accusantium sint beatae quaerat. Ad illum vero cum
-				perspiciatis dolor iure ut. Aperiam est quidem autem fugit esse quam
-				voluptates a. Nihil quia est. Ut consequatur eos est voluptatem modi
-				deserunt voluptatem dolor est. Reiciendis accusantium omnis consequuntur
-				officia esse quia fuga recusandae hic. Excepturi ipsum eligendi. Dolores
-				neque commodi est facere dolores aspernatur repellendus non minus.
+				reiciendis. Optio culpa sequi error harum blanditiis veritatis
+				labore doloribus laborum. Repellendus veritatis omnis et et
+				facere consequatur. Voluptate quae dicta minima suscipit enim.
+				Quis veniam non expedita earum. Eos sit nobis accusantium sint
+				beatae quaerat. Ad illum vero cum perspiciatis dolor iure ut.
+				Aperiam est quidem autem fugit esse quam voluptates a. Nihil
+				quia est. Ut consequatur eos est voluptatem modi deserunt
+				voluptatem dolor est. Reiciendis accusantium omnis consequuntur
+				officia esse quia fuga recusandae hic. Excepturi ipsum eligendi.
+				Dolores neque commodi est facere dolores aspernatur repellendus
+				non minus.
 			</p>
-			<div class="button-container"> 
-				<a class="primary-button" href="/projects">Back</a> 
+			<div class="button-container">
+				<a class="primary-button" href="/projects">Back</a>
 			</div>
 		</div>
 	</BoxContainer>
@@ -65,7 +68,7 @@ const { project } = Astro.props;
 		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: stretch;
-    	flex-direction: column;
+		flex-direction: column;
 		gap: var(--space-xs);
 		color: var(--palette-black);
 	}
@@ -91,7 +94,7 @@ const { project } = Astro.props;
 	}
 	.button-container {
 		display: flex;
-	} 
+	}
 	.breadcrumb {
 		list-style: none;
 		flex-direction: row;
@@ -110,5 +113,8 @@ const { project } = Astro.props;
 	}
 	.project-name {
 		font-weight: 500;
+	}
+	.project-image {
+		max-width: 100%;
 	}
 </style>

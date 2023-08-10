@@ -2,101 +2,120 @@
 import { getCollection } from "astro:content";
 import ContactListItem from "./ContactListItem.astro";
 
-const allContacts = await getCollection('contacts');
-const contacts = allContacts[0]?.data
-
+const allContacts = await getCollection("contacts");
+const contacts = allContacts[0]?.data;
 ---
 
-
-<footer>
-  <div class="footer-box">
-    <div>
-      <img src="/public/logo-full.svg" alt="" />
-    </div>
-    <div class="list-container">
-      <div>
-        <h4>Contacts</h4>
-        <ul class="contacts">
-          <ContactListItem contactType="phone" value={contacts.phone} />
-          <ContactListItem contactType="mobile" value={contacts.mobile} />
-          {contacts.emails.map((email) => (
-            <ContactListItem key={email} contactType="email" value={email} />
-          ))}
-          <ContactListItem
-            contactType="address"
-            value={contacts.address}
-            href={contacts.addressHref}
-          />
-        </ul>
-      </div>
-      <div class="links-container">
-        <h4>Links</h4>
-        <ul>
-          {contacts.links.map(link => (
-            <li>
-              <a href={link.href}>{link.title}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-    <div class="copyright">
-      © Copyright ing. Mario Rossi, Torino - P.I. 123456789
-    </div>
-  </div>
+<footer class="fixed">
+	<div class="footer-box">
+		<div>
+			<img src="/public/logo-full.svg" alt="" />
+		</div>
+		<div class="list-container">
+			<div>
+				<h4>Contacts</h4>
+				<ul class="contacts">
+					<ContactListItem
+						contactType="phone"
+						value={contacts.phone}
+					/>
+					<ContactListItem
+						contactType="mobile"
+						value={contacts.mobile}
+					/>
+					{
+						contacts.emails.map((email) => (
+							<ContactListItem
+								key={email}
+								contactType="email"
+								value={email}
+							/>
+						))
+					}
+					<ContactListItem
+						contactType="address"
+						value={contacts.address}
+						href={contacts.addressHref}
+					/>
+				</ul>
+			</div>
+			<div class="links-container">
+				<h4>Links</h4>
+				<ul>
+					{
+						contacts.links.map((link) => (
+							<li>
+								<a href={link.href}>{link.title}</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</div>
+		<div class="copyright">
+			© Copyright ing. Mario Rossi, Torino - P.I. 123456789
+		</div>
+	</div>
 </footer>
 
 <style>
-  
+	/*.fixed {
+		position: fixed;
+		inset-block-end: 0;
+		justify-content: center;
+		inset-inline-start: 0;
+		inset-inline-end: 0;
+	}*/
 
-  footer {
-			background-color: var(--palette-black);
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			color: var(--palette-white);
-			fill: var(--palette-white);
-			padding: var(--space-xs);
-		}
-		footer h4 {
-			text-transform: capitalize;
-			margin-block-start: 0;
-			margin-block-end: var(--space-3xs);
-		}
-		.footer-box {
-			max-width: 600px;
-		}
-		.links-container li {
-			list-style: none;
-		}
-		.links-container {
-			border-left: 1px solid var(--palette-white-opacity);
-			padding-inline-start: var(--space-xs);
-		}
-		.links-container ul {
-			padding-inline-start: 0;
-		}
+	footer {
+		background-color: var(--palette-black);
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		color: var(--palette-white);
+		fill: var(--palette-white);
+		padding: var(--space-xs);
+		margin-block-start: auto;
+	}
+	footer h4 {
+		text-transform: capitalize;
+		margin-block-start: 0;
+		margin-block-end: var(--space-3xs);
+	}
+	.footer-box {
+		max-width: var(--breakpoint-600);
+	}
+	.links-container li {
+		list-style: none;
+	}
+	.links-container {
+		border-left: 1px solid var(--palette-white-opacity);
+		padding-inline-start: var(--space-xs);
+	}
+	.links-container ul {
+		padding-inline-start: 0;
+	}
+	.list-container {
+		display: flex;
+		flex-direction: row;
+		text-align: start;
+		gap: var(--space-m);
+		justify-content: space-between;
+	}
+	.list-container li {
+		margin-block-start: var(--space-3xs);
+		margin-block-end: var(--space-3xs);
+	}
+	.list-container ul {
+		margin-block-start: 0;
+	}
+	.copyright {
+		padding-block-start: var(--space-s);
+	}
+
+	@media screen and (min-width: 600px) and (max-width: 800px) {
 		.list-container {
-			display: flex;
-			flex-direction: row;
-			text-align: start;
-			gap: var(--space-m);
-			justify-content: space-between;
+			justify-content: space-around;
 		}
-		.list-container li {
-			margin-block-start: var(--space-3xs);
-			margin-block-end: var(--space-3xs);
-		}
-		.list-container ul {
-			margin-block-start: 0;
-		}
-		.copyright {
-			padding-block-start: var(--space-s);
-		}
-		
-		@media screen and (min-width: 600px) and (max-width: 800px) {
-			.list-container {
-				justify-content: space-around;
-			}
-		}
+	}
 </style>

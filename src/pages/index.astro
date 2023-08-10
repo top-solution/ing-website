@@ -6,13 +6,12 @@ import HomeSection from "../components/HomeSection.astro";
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
-
-const allLandingSections = await getCollection('homepage');
+const allLandingSections = await getCollection("homepage");
 ---
 
 <Layout title={title} description={description} activeHeader="home">
 	{
-		allLandingSections.map(section => (
+		allLandingSections.map((section) => (
 			<HomeSection
 				title={section.data.title}
 				backgroundImage={section.data.backgroundImage}
@@ -24,5 +23,4 @@ const allLandingSections = await getCollection('homepage');
 	}
 </Layout>
 
-<style>
-</style>
+<style></style>

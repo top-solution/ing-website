@@ -6,10 +6,8 @@ import ContactListItem from "../components/ContactListItem.astro";
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
-
-const allContacts = await getCollection('contacts');
-const contacts = allContacts[0]?.data
-
+const allContacts = await getCollection("contacts");
+const contacts = allContacts[0]?.data;
 ---
 
 <Layout title={title} description={description} activeHeader="contacts">
@@ -23,9 +21,15 @@ const contacts = allContacts[0]?.data
 			<ul class="contacts">
 				<ContactListItem contactType="phone" value={contacts.phone} />
 				<ContactListItem contactType="mobile" value={contacts.mobile} />
-				{contacts.emails.map((email) => (
-					<ContactListItem key={email} contactType="email" value={email} />
-				))}
+				{
+					contacts.emails.map((email) => (
+						<ContactListItem
+							key={email}
+							contactType="email"
+							value={email}
+						/>
+					))
+				}
 				<ContactListItem
 					contactType="address"
 					value={contacts.address}
@@ -46,8 +50,8 @@ const contacts = allContacts[0]?.data
 			background-image: url("/public/maps.png");
 			background-size: cover;
 			display: block;
-			max-height: 300px;
-			min-height: 248px;
+			max-height: var(--breakpoint-300);
+			min-height: var(--breakpoint-248);
 			background-position: center;
 		}
 		.contacts {
