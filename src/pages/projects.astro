@@ -15,7 +15,7 @@ const allProjects = await getCollection('projects');
 		<div class="projects">
 			{
 				allProjects.map(section => (
-				<a class="project" href={section.slug} style={`background-image: url(${section.data.image});`}>
+					<a class="project" href={`/projects/${section.slug}`} style={`background-image: url(${section.data.image});`}>
 						<div class="project-title">
 							<h3>{section.data.title}</h3>
 							<p>{section.data.description}</p>
@@ -37,7 +37,6 @@ const allProjects = await getCollection('projects');
 		align-items: center;
 		gap: var(--space-m);
 		width: 100%;
-
 	}
 
 	.project {

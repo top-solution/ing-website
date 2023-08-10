@@ -1,40 +1,44 @@
 ---
 import { getCollection } from "astro:content";
-import { Icon } from "astro-icon";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import Layout from "../layouts/Layout.astro";
-import Nav from "../components/Nav.astro";
-import Section from "../components/Section.astro";
-import type { NavItem } from "../components/Nav.astro";
+import Layout from "../../layouts/Layout.astro";
+import BoxContainer from "../../components/BoxContainer.astro";
 
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
-const nav: NavItem[] = [];
+
+export async function getStaticPaths() {
+	const allProjects = await getCollection('projects');
+  return allProjects.map(({ slug, ...sectionProps }) => {
+    return {
+      params: { project: slug },
+      props: { project: sectionProps },
+    };
+  });
+}
+
+const { project } = Astro.props;
+
+
 ---
 
-<Layout title={title} description={description}>
-	<!-- <Nav items={nav} />
-	<Header title={title}>
-		{"Repellendus in suscipit est repellat quisquam non voluptatibus."}
-	</Header> -->
-	<section class="box-container main-box-container">
-		<div class="box-content main-box-content">
+<Layout title={title} description={description} activeHeader="projects">
+	<BoxContainer variant="main">
+		<div class="project">
 			<ul class="breadcrumb">
-				<li><a href="/">Projects</a></li>
+				<li><a href="/projects">Projects</a></li>
 				<img src="/public/chevron-right.svg" alt="" />
-				<li class="project-name">Name project</li>
+				<li class="project-name">{project.data.title}</li>
 			</ul> 
-			<img src="/public/project-0.png" alt="Project 1" />
-			<h3>Fugit id voluptatibus quae sit corrupti</h3>
+			<img src={`/${project.data.image}`} alt={project.data.title} />
+			<h3>{project.data.title}</h3>
 			<dl class="building-data">
 				<dt>Type</dt>
-				<dd>Nostrum</dd>
+				<dd>{project.data.projectType}</dd>
 				<dt>Height</dt>
-				<dd>98m</dd>
+				<dd>{project.data.height}</dd>
 				<dt>Year</dt>
-				<dd>1992</dd>
+				<dd>{project.data.year}</dd>
 			</dl>
 			<p>
 				Culpa quasi est. Sit explicabo est nisi repellat magnam nihil id
@@ -52,16 +56,18 @@ const nav: NavItem[] = [];
 				<a class="primary-button" href="/projects">Back</a> 
 			</div>
 		</div>
-	</section>
+	</BoxContainer>
 </Layout>
 
 <style>
-	.main-box-content {
+	:global(.project) {
+		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: stretch;
     	flex-direction: column;
 		gap: var(--space-xs);
+		color: var(--palette-black);
 	}
 	h3 {
 		text-transform: none;
