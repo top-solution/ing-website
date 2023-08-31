@@ -1,29 +1,22 @@
 ---
-import BoxContainer from "./BoxContainer.astro";
+import BoxContainer, { BoxContainerProps } from "./BoxContainer.astro";
 import Button from "./Button.astro";
-const {title, backgroundImage, ctaText, ctaHref, section } = Astro.props;
+const { title, backgroundImage, ctaText, ctaHref, section } = Astro.props;
 
-const {Content} = await section.render()
+const { Content } = await section.render();
 
-let variant = 'secondary'
+let variant = "secondary" as BoxContainerProps["variant"];
 if (backgroundImage) {
-  variant = 'main'
+  variant = "main" as const;
 } else if (ctaText) {
-  variant = 'cta'
+  variant = "cta" as const;
 }
-
-
 ---
 
 <BoxContainer variant={variant} backgroundImage={backgroundImage}>
   <h2>{title}</h2>
-  <Content/>
-  {
-    ctaText && ctaHref ? (
-      <Button href={ctaHref}>{ctaText}</Button>
-    ) : null
-  }
+  <Content />
+  {ctaText && ctaHref ? <Button href={ctaHref}>{ctaText}</Button> : null}
 </BoxContainer>
 
-<style>
-</style>
+<style></style>

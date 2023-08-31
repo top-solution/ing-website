@@ -9,18 +9,18 @@ const description = "Mario Rossi";
 const allLandingSections = await getCollection("homepage");
 ---
 
-<Layout title={title} description={description} activeHeader="home">
-	{
-		allLandingSections.map((section) => (
-			<HomeSection
-				title={section.data.title}
-				backgroundImage={section.data.backgroundImage}
-				ctaText={section.data.ctaText}
-				ctaHref={section.data.ctaHref}
-				section={section}
-			/>
-		))
-	}
+<Layout title={title} description={description} activeHeader="homepage">
+  {
+    allLandingSections.map((section) => (
+      <HomeSection
+        title={section.data.title}
+        backgroundImage={section.data.backgroundImage}
+        ctaText={section.data.ctaText}
+        ctaHref={section.data.ctaHref}
+        section={section}
+      />
+    ))
+  }
 </Layout>
 
 <style></style>
