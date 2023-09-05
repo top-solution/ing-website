@@ -1,4 +1,5 @@
 ---
+import { getImage, Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import BoxContainer from "../../components/BoxContainer.astro";
@@ -27,10 +28,13 @@ const { project } = Astro.props;
         <img src="/public/chevron-right.svg" alt="" />
         <li class="project-name">{project.data.title}</li>
       </ul>
-      <img
+
+      <Image
         class="project-image"
-        src={`/${project.data.image}`}
+        src={project.data.image}
         alt={project.data.title}
+        width="900"
+        height="900"
       />
       <h3>{project.data.title}</h3>
       <dl class="building-data">
@@ -125,5 +129,6 @@ const { project } = Astro.props;
     max-width: 100%;
     padding-inline-start: var(--space-m);
     padding-inline-end: var(--space-m);
+    height: auto;
   }
 </style>

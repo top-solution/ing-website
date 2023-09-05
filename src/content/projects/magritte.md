@@ -1,5 +1,5 @@
 ---
-image: "public/magritte.jpg"
+image: "../../assets/magritte.jpg"
 title: "Magritte"
 description: "Voluptates a voluptatem et"
 projectType: "Ingengneria sismica"

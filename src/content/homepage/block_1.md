@@ -1,5 +1,5 @@
 ---
-backgroundImage: "public/home-background-1.jpg"
+backgroundImage: "../../assets/home-background-1.jpg"
 ctaText: About
 ctaHref: "/about"
 ---

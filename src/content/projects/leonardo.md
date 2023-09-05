@@ -1,5 +1,5 @@
 ---
-image: "public/leonardo.jpg"
+image: "../../assets/leonardo.jpg"
 title: "Leonardo"
 description: "Voluptates a voluptatem et"
 projectType: "Ingengneria sismica"

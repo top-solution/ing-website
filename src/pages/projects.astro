@@ -1,4 +1,5 @@
 ---
+import { getImage, ImageMetadata } from "astro:assets";
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import BoxContainer from "../components/BoxContainer.astro";
@@ -7,17 +8,28 @@ const title = "Mario Rossi";
 const description = "Mario Rossi";
 
 const allProjects = await getCollection("projects");
+const optimizedBackgroundImages: ImageMetadata[] = [];
+for (let i = 0; i < allProjects.length; i++) {
+  const project = allProjects[i];
+
+  const image = await getImage({
+    src: project.data.image,
+    width: 600,
+    height: 250,
+  });
+  optimizedBackgroundImages.push(image);
+}
 ---
 
 <Layout title={title} description={description} activeHeader="projects">
   <BoxContainer variant="wrapper">
     <div class="projects">
       {
-        allProjects.map((section) => (
+        allProjects.map((section, i) => (
           <a
             class="project"
             href={`/projects/${section.slug}`}
-            style={`background-image: url(${section.data.image});`}
+            style={`background-image: url('${optimizedBackgroundImages[i].src}');`}
           >
             <div class="project-title">
               <h3>{section.data.title}</h3>

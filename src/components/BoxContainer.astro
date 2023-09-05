@@ -1,15 +1,19 @@
 ---
+import { getImage } from "astro:assets";
 export interface BoxContainerProps {
   backgroundImage?: string;
   variant: "wrapper" | "main" | "secondary" | "cta";
 }
 
 const { variant, backgroundImage } = Astro.props;
+const optimizedBackgroundImage = backgroundImage
+  ? await getImage({ src: backgroundImage })
+  : undefined;
 ---
 
 <section
   class={`box-container ${variant}-box-container`}
-  style={`background-image: url(${backgroundImage})`}
+  style={`background-image: url(${optimizedBackgroundImage?.src})`}
 >
   <div class={`box-content ${variant}-box-content`}>
     <slot />
@@ -47,7 +51,7 @@ const { variant, backgroundImage } = Astro.props;
   .main-box-content {
     flex-direction: row;
     align-items: center;
-    gap: var(--space-m);
+    /*gap: var(--space-m);*/
   }
 
   .main-box-container p {

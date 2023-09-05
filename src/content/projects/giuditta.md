@@ -1,5 +1,5 @@
 ---
-image: "public/giuditta.jpg"
+image: "../../assets/giuditta.jpg"
 title: "Giuditta"
 description: "Voluptates a voluptatem et"
 projectType: "Ingengneria sismica"

@@ -4,4 +4,4 @@ title: "Ingegneria sismica"
 
 Lorem ipsum dolor sit amet consectetur. Sit urna leo turpis laoreet. Lobortis convallis in maecenas eget faucibus. Egestas ipsum porta nibh condimentum fringilla sollicitudin etiam habitant. Nec adipiscing magna sagittis sed.
 
-![alt text](public/home-background-2.png "Ingegneria sismica")
+![alt text](../../assets/home-background-2.png "Ingegneria sismica")

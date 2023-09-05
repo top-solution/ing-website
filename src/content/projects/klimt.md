@@ -1,5 +1,5 @@
 ---
-image: "public/klimt.jpg"
+image: "../../assets/klimt.jpg"
 title: "Klimt"
 description: "Libero qui quod dolor reiciendis"
 projectType: "Ingengeria strutturale"

@@ -1,5 +1,5 @@
 ---
-image: "public/lesly.jpg"
+image: "../../assets/lesly.jpg"
 title: "Lesly"
 description: "Voluptates a voluptatem et"
 projectType: "Ingengneria sismica"
