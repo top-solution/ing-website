@@ -8,7 +8,7 @@ address: "C.so Verde 52, 10128 Torino"
 addressHref: "https://goo.gl/maps/hSzxx7GiAhoLtw65A"
 links:
   - title: Home
-    href: /home
+    href: /
   - title: Projects
     href: /projects
   - title: About

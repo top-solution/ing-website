@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import logoFullDark from "../assets/logo-full-dark.svg";
 export interface Props {
   active: string;
 }
@@ -8,7 +10,7 @@ const { active } = Astro.props;
 
 <header>
   <div class="header-logo">
-    <img src="/public/logo-full-dark.svg" alt="Ingegnere Mario Rossi" />
+    <Image src={logoFullDark} alt="Ingegnere Mario Rossi" />
   </div>
   <ul class="header-menu">
     <li class={active === "home" ? "menu-active" : ""}>

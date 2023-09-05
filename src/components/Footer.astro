@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import ContactListItem from "./ContactListItem.astro";
+import { Image } from "astro:assets";
+import logoFull from "../assets/logo-full.svg";
 
 const allContacts = await getCollection("contacts");
 const contacts = allContacts[0]?.data;
@@ -9,7 +11,7 @@ const contacts = allContacts[0]?.data;
 <footer class="fixed">
   <div class="footer-box">
     <div>
-      <img src="/public/logo-full.svg" alt="" />
+      <Image src={logoFull} alt="" />
     </div>
     <div class="list-container">
       <div>

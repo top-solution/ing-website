@@ -2,70 +2,89 @@
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import ContactListItem from "../components/ContactListItem.astro";
+import map from "../assets/maps.png";
+import { getImage, Image } from "astro:assets";
 
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
 const allContacts = await getCollection("contacts");
 const contacts = allContacts[0]?.data;
+const optimizedBackgroundImage = await getImage({ src: map });
 ---
 
 <Layout title={title} description={description} activeHeader="contacts">
-	<section class="box-container blue-box-container">
-		<div class="box-content secondary-box-content">
-			<a href="/public/maps.png" target="_blank" class="map"> </a>
-		</div>
-	</section>
-	<section class="box-container">
-		<div class="box-content secondary-box-content">
-			<ul class="contacts">
-				<ContactListItem contactType="phone" value={contacts.phone} />
-				<ContactListItem contactType="mobile" value={contacts.mobile} />
-				{
-					contacts.emails.map((email) => (
-						<ContactListItem
-							key={email}
-							contactType="email"
-							value={email}
-						/>
-					))
-				}
-				<ContactListItem
-					contactType="address"
-					value={contacts.address}
-					href={contacts.addressHref}
-				/>
-			</ul>
-		</div>
-	</section>
+  <a href="/public/maps.png" target="_blank" class="map">
+    <Image src={map} alt="" />
+  </a>
 
-	<style>
-		.blue-box-container {
-			background-color: var(--palette-blue);
-			color: var(--palette-white);
-		}
-		.map {
-			width: 100%;
-			height: 40vw;
-			background-image: url("/public/maps.png");
-			background-size: cover;
-			display: block;
-			max-height: var(--breakpoint-300);
-			min-height: var(--breakpoint-248);
-			background-position: center;
-		}
-		.contacts {
-			list-style: none;
-			padding-inline-start: 0;
-			margin-block-end: 0;
-		}
-		.contacts li {
-			display: flex;
-			flex-direction: row;
-			gap: var(--space-s);
-		}
-		.box-content img {
-			max-width: 100%;
-		}
-	</style>
+  <section class="box-container blue-box-container">
+    <div class="box-content secondary-box-content">
+      <ul class="contacts">
+        <ContactListItem contactType="phone" value={contacts.phone} />
+        <ContactListItem contactType="mobile" value={contacts.mobile} />
+        {
+          contacts.emails.map((email) => (
+            <ContactListItem key={email} contactType="email" value={email} />
+          ))
+        }
+        <ContactListItem
+          contactType="address"
+          value={contacts.address}
+          href={contacts.addressHref}
+        />
+      </ul>
+    </div>
+  </section>
 </Layout>
+<style>
+  .blue-box-container {
+    background-color: var(--palette-blue);
+    color: var(--palette-white);
+    fill: var(--palette-white);
+  }
+
+  .map {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .contacts {
+    list-style: none;
+    padding-inline-start: 0;
+    margin-block-end: 0;
+  }
+  .contacts li {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-s);
+  }
+  .map img {
+    object-fit: cover;
+    max-width: 100%;
+    height: 30vh;
+    /* transform: scale(1.5); */
+  }
+  @media screen and (max-width: 900px) {
+    .map img {
+      transform: scale(1.5);
+    }
+  }
+  @media screen and (max-width: 800px) {
+    .map img {
+      transform: scale(2);
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .map img {
+      transform: scale(2.5);
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .map img {
+      transform: scale(3);
+    }
+  }
+</style>
