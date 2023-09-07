@@ -10,7 +10,7 @@ const contacts = allContacts[0]?.data;
 
 <footer class="fixed">
   <div class="footer-box">
-    <div>
+    <div class="footer-logo">
       <Image src={logoFull} alt="" />
     </div>
     <div class="list-container">
@@ -31,6 +31,7 @@ const contacts = allContacts[0]?.data;
           />
         </ul>
       </div>
+      <div class="links-separator"></div>
       <div class="links-container">
         <h4>Links</h4>
         <ul>
@@ -51,14 +52,6 @@ const contacts = allContacts[0]?.data;
 </footer>
 
 <style>
-  /*.fixed {
-		position: fixed;
-		inset-block-end: 0;
-		justify-content: center;
-		inset-inline-start: 0;
-		inset-inline-end: 0;
-	}*/
-
   footer {
     background-color: var(--palette-black);
     display: flex;
@@ -73,35 +66,33 @@ const contacts = allContacts[0]?.data;
     text-transform: capitalize;
     margin-block-start: 0;
     margin-block-end: var(--space-3xs);
-    padding-inline-start: var(--space-m);
-    padding-inline-end: var(--space-xs);
   }
   .footer-box {
     max-width: var(--breakpoint-600);
+  }
+  .footer-logo {
+    margin-block-end: var(--space-xs);
   }
   .links-container li {
     list-style: none;
   }
   .links-container {
-    border-left: 1px solid var(--palette-white-opacity);
     padding-inline-start: var(--space-3xs);
     padding-inline-end: var(--space-3xs);
-  }
-  .links-container ul {
-    padding-inline-start: var(--space-m);
   }
   .list-container {
     display: flex;
     flex-direction: row;
     text-align: start;
-    gap: var(--space-m);
-    justify-content: space-between;
+    align-items: stretch;
+    justify-content: space-around;
   }
-  .list-container li {
-    margin-block-start: var(--space-3xs);
-    margin-block-end: var(--space-3xs);
+  .links-separator {
+    width: 1px;
+    border-left: 1px solid var(--palette-white-opacity);
   }
   .list-container ul {
+    padding-inline-start: 0;
     margin-block-start: 0;
     list-style: none;
   }

@@ -1,8 +1,10 @@
 ---
-import { getImage, Image } from "astro:assets";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import BoxContainer from "../../components/BoxContainer.astro";
+import Button from "../../components/Button.astro";
 
 const title = "Mario Rossi";
 const description = "Mario Rossi";
@@ -25,7 +27,7 @@ const { project } = Astro.props;
     <div class="project">
       <ul class="breadcrumb">
         <li><a href="/projects">Projects</a></li>
-        <img src="/public/chevron-right.svg" alt="" />
+        <Icon pack="mdi" name="chevron-right" />
         <li class="project-name">{project.data.title}</li>
       </ul>
 
@@ -58,7 +60,7 @@ const { project } = Astro.props;
         neque commodi est facere dolores aspernatur repellendus non minus.
       </p>
       <div class="button-container">
-        <a class="primary-button" href="/projects">Back</a>
+        <Button href="/projects">Back</Button>
       </div>
     </div>
   </BoxContainer>
@@ -106,6 +108,7 @@ const { project } = Astro.props;
     padding-inline-start: var(--space-m);
     margin-block-end: var(--space-m);
   }
+
   .breadcrumb {
     list-style: none;
     flex-direction: row;
@@ -115,9 +118,8 @@ const { project } = Astro.props;
     margin-block-end: 0;
     padding-inline-start: var(--space-m);
   }
-  .breadcrumb img {
+  .breadcrumb svg {
     height: 24px;
-    width: 24px;
   }
   .breadcrumb li {
     margin-block-start: 0;

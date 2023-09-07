@@ -19,4 +19,8 @@ if (backgroundImage) {
   {ctaText && ctaHref ? <Button href={ctaHref}>{ctaText}</Button> : null}
 </BoxContainer>
 
-<style></style>
+<style>
+  :global(.primary-button) {
+    margin-inline-start: var(--space-m);
+  }
+</style>
