@@ -1,0 +1,97 @@
+---
+import { getImage } from "astro:assets";
+export interface BoxContainerProps {
+  backgroundImage?: string;
+  variant: "wrapper" | "main" | "secondary" | "cta";
+}
+
+const { variant, backgroundImage } = Astro.props;
+const optimizedBackgroundImage = backgroundImage
+  ? await getImage({ src: backgroundImage })
+  : undefined;
+---
+
+<section
+  class={`box-container ${variant}-box-container`}
+  style={optimizedBackgroundImage
+    ? `background-image: url(${optimizedBackgroundImage.src})`
+    : ""}
+>
+  <div class={`box-content ${variant}-box-content`}>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .box-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 30vh;
+    padding: var(--space-m);
+    font-size: var(--step-1);
+  }
+
+  .box-content {
+    display: flex;
+    width: var(--breakpoint-600);
+    max-width: 100%;
+  }
+
+  .box-content :global(p) {
+    max-width: 100%;
+  }
+  .box-content :global(img) {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .wrapper-box-container {
+    padding: 0;
+    min-height: 0;
+  }
+
+  .main-box-container {
+    background-size: cover;
+    color: var(--palette-white);
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .main-box-content {
+    flex-direction: row;
+    align-items: center;
+    /*gap: var(--space-m);*/
+  }
+
+  .main-box-container p {
+    margin: 0;
+  }
+
+  .secondary-box-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .secondary-box-container:nth-of-type(2n + 1) {
+    background-color: var(--palette-blue);
+    color: var(--palette-white);
+  }
+
+  .cta-box-container {
+    min-height: 0;
+  }
+
+  .cta-box-content {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  @media screen and (max-width: 600px) {
+    .main-box-content {
+      flex-direction: column;
+      align-items: flex-end;
+      gap: var(--space-s);
+    }
+  }
+</style>

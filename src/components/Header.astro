@@ -1,29 +1,77 @@
 ---
+import { Image } from "astro:assets";
+import logoFullDark from "../assets/logo-full-dark.svg";
 export interface Props {
-  title: string;
+  active: string;
 }
 
-const { title } = Astro.props;
+const { active } = Astro.props;
 ---
 
 <header>
-  <slot name="claim" />
-  <h1>{title}</h1>
-  <slot />
+  <div class="header-logo">
+    <Image src={logoFullDark} alt="Ingegnere Mario Rossi" />
+  </div>
+  <ul class="header-menu">
+    <li class={active === "homepage" ? "menu-active" : ""}>
+      <a href="/">Home</a>
+    </li>
+    <li class={active === "projects" ? "menu-active" : ""}>
+      <a href="/projects">Projects</a>
+    </li>
+    <li class={active === "about" ? "menu-active" : ""}>
+      <a href="/about">About</a>
+    </li>
+    <li class={active === "contacts" ? "menu-active" : ""}>
+      <a href="/contacts">Contacts</a>
+    </li>
+  </ul>
 </header>
 
 <style>
   header {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .header-logo {
+    margin-block-start: var(--space-m);
+  }
+  .header-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-xl);
+    justify-content: space-between;
+    max-width: var(--breakpoint-600);
+    min-width: var(--breakpoint-280);
+    padding-inline-start: 0;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--step-2);
+  }
+  .header-menu li {
+    font-size: var(--step-2);
+  }
+  .header-menu a {
+    text-decoration: none;
+  }
+  .menu-active {
+    color: var(--palette-blue);
   }
 
-  img {
-    height: calc(var(--step-5) * 4);
-  }
-
-  @media screen and (max-width: 900px) {
-    header {
-      justify-content: flex-start;
+  @media screen and (max-width: 600px) {
+    .links-container {
+      display: none;
+    }
+    .list-container {
+      justify-content: center;
+    }
+    .header-menu {
+      gap: var(--space-s);
+    }
+    .header-menu li {
+      font-size: var(--step-0);
     }
   }
 </style>

@@ -1,0 +1,48 @@
+---
+import { Icon } from "astro-icon";
+const { contactType, value, href } = Astro.props;
+
+let prefix = "";
+let linkHref = href;
+
+if (contactType === "phone") {
+  prefix = "tel/fax";
+  linkHref = `tel:${value}`;
+} else if (contactType === "mobile") {
+  prefix = "mobile";
+  linkHref = `tel:${value}`;
+} else if (contactType === "email") {
+  linkHref = `mailto:${value}`;
+}
+---
+
+<li>
+  {
+    contactType === "phone" ? (
+      <Icon pack="mdi" name="phone" />
+    ) : contactType === "mobile" ? (
+      <Icon pack="mdi" name="cellphone-android" />
+    ) : contactType === "email" ? (
+      <Icon pack="mdi" name="email-outline" />
+    ) : contactType === "address" ? (
+      <Icon pack="mdi" name="map-marker" />
+    ) : null
+  }
+  <span>
+    {prefix ? <span class="prefix">{prefix}</span> : null}
+    <a href={linkHref} target={href ? "_blank" : ""}>{value}</a>
+  </span>
+</li>
+
+<style>
+  svg {
+    height: 1em;
+    width: 1em;
+    top: 0.125em;
+    position: relative;
+    margin-right: 0.5em;
+  }
+  .prefix {
+    margin-inline-end: var(--space-xs);
+  }
+</style>

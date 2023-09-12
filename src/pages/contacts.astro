@@ -1,347 +1,102 @@
 ---
 import { getCollection } from "astro:content";
-import { Icon } from "astro-icon";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
-import Nav from "../components/Nav.astro";
-import Section from "../components/Section.astro";
-import type { NavItem } from "../components/Nav.astro";
+import ContactListItem from "../components/ContactListItem.astro";
+import map from "../assets/maps.png";
+import { getImage, Image } from "astro:assets";
+import BoxContainer from "../components/BoxContainer.astro";
 
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
-const nav: NavItem[] = [];
+const allContacts = await getCollection("contacts");
+const contacts = allContacts[0]?.data;
+const optimizedBackgroundImage = await getImage({ src: map });
 ---
 
-<Layout title={title} description={description}>
-	<!-- <Nav items={nav} />
-	<Header title={title}>
-		{"Repellendus in suscipit est repellat quisquam non voluptatibus."}
-	</Header> -->
-	<header class="header-container">
-		<div class="logo-header">
-			<img src="/public/logo-full-dark.svg" alt="Ingegnere Mario Rossi" />
-		</div>
-		<div>
-			<ul class="menu-header">
-				<li>
-					<a href="/">Home</a>
-				</li>
-				<li>
-					<a href="/projects">Projects</a>
-				</li>
-				<li>
-					<a href="/about">About</a>
-				</li>
-				<li class="menu-active">
-					<a href="/contacts">Contacts</a>
-				</li>
-			</ul>
-		</div>
-	</header>
-	<section class="box-container blue-box-container">
-		<div class="box-content secondary-box-content">
-			<a href="/public/maps.png" target="_blank" class="map"> </a>
-		</div>
-	</section>
-	<section class="box-container">
-		<div class="box-content secondary-box-content">
-			<ul class="contacts">
-				<li>
-					<img src="/public/phone-outline.svg" alt="" />
-					<span>
-						tel/fax
-						<a href="tel:+39 011 23456789"> +39 011 23456789</a>
-					</span>
-				</li>
-				<li>
-					<img src="/public/cellphone.svg" alt="" />
-					<span>
-						mobile
-						<a href="tel:123 456 789"> 123 456 789</a>
-					</span>
-				</li>
-				<li>
-					<img src="/public/email-outline.svg" alt="" />
-					<span>
-						<a href="mailto:a.rossi@ingrossi.it">
-							a.rossi@ingrossi.it
-						</a>
-					</span>
-				</li>
-				<li>
-					<img src="/public/email-outline.svg" alt="" />
-					<span>
-						<a href="mailto:studio@ingrossi.it">
-							studio@ingrossi.it
-						</a>
-					</span>
-				</li>
-				<li>
-					<img src="/public/map-marker-outline.svg" alt="" />
-					<span>
-						<a
-							href="https://goo.gl/maps/hSzxx7GiAhoLtw65A"
-							target="_blank"
-						>
-							C.so Verde 52, 10128 Torino
-						</a>
-					</span>
-				</li>
-			</ul>
-		</div>
-	</section>
-	<footer>
-		<div class="footer-box">
-			<div>
-				<img src="/public/logo-full.svg" alt="" />
-			</div>
-			<div class="list-container">
-				<div>
-					<h4>Contacts</h4>
-					<ul class="contacts">
-						<li>
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M20 15.5C18.8 15.5 17.5 15.3 16.4 14.9C16.3 14.9 16.2 14.9 16.1 14.9C15.8 14.9 15.6 15 15.4 15.2L13.2 17.4C10.4 15.9 8 13.6 6.6 10.8L8.8 8.6C9.1 8.3 9.2 7.9 9 7.6C8.7 6.5 8.5 5.2 8.5 4C8.5 3.5 8 3 7.5 3H4C3.5 3 3 3.5 3 4C3 13.4 10.6 21 20 21C20.5 21 21 20.5 21 20V16.5C21 16 20.5 15.5 20 15.5ZM5 5H6.5C6.6 5.9 6.8 6.8 7 7.6L5.8 8.8C5.4 7.6 5.1 6.3 5 5ZM19 19C17.7 18.9 16.4 18.6 15.2 18.2L16.4 17C17.2 17.2 18.1 17.4 19 17.4V19Z"
-									fill-opacity="0.87"></path>
-							</svg>
-							<span>
-								tel/fax
-								<a href="tel:+39 011 23456789">
-									+39 011 23456789
-								</a>
-							</span>
-						</li>
-						<li>
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M17 19H7V5H17M17 1H7C5.89 1 5 1.89 5 3V21C5 21.5304 5.21071 22.0391 5.58579 22.4142C5.96086 22.7893 6.46957 23 7 23H17C17.5304 23 18.0391 22.7893 18.4142 22.4142C18.7893 22.0391 19 21.5304 19 21V3C19 1.89 18.1 1 17 1Z"
-									fill-opacity="0.87"
-								>
-								</path>
-							</svg>
-							<span>
-								mobile
-								<a href="tel:123 456 789"> 123 456 789</a>
-							</span>
-						</li>
-						<li>
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z"
-									fill-opacity="0.87"
-								>
-								</path>
-							</svg>
-							<span>
-								<a href="mailto:a.rossi@ingrossi.it">
-									a.rossi@ingrossi.it
-								</a>
-							</span>
-						</li>
-						<li>
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z"
-									fill-opacity="0.87"
-								>
-								</path>
-								<span>
-									<a href="mailto:studio@ingrossi.it">
-										studio@ingrossi.it
-									</a>
-								</span>
-							</svg>
-							<li>
-								<svg
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M12 6.5C12.663 6.5 13.2989 6.76339 13.7678 7.23223C14.2366 7.70107 14.5 8.33696 14.5 9C14.5 9.3283 14.4353 9.65339 14.3097 9.95671C14.1841 10.26 13.9999 10.5356 13.7678 10.7678C13.5356 10.9999 13.26 11.1841 12.9567 11.3097C12.6534 11.4353 12.3283 11.5 12 11.5C11.337 11.5 10.7011 11.2366 10.2322 10.7678C9.76339 10.2989 9.5 9.66304 9.5 9C9.5 8.33696 9.76339 7.70107 10.2322 7.23223C10.7011 6.76339 11.337 6.5 12 6.5ZM12 2C13.8565 2 15.637 2.7375 16.9497 4.05025C18.2625 5.36301 19 7.14348 19 9C19 14.25 12 22 12 22C12 22 5 14.25 5 9C5 7.14348 5.7375 5.36301 7.05025 4.05025C8.36301 2.7375 10.1435 2 12 2ZM12 4C10.6739 4 9.40215 4.52678 8.46447 5.46447C7.52678 6.40215 7 7.67392 7 9C7 10 7 12 12 18.71C17 12 17 10 17 9C17 7.67392 16.4732 6.40215 15.5355 5.46447C14.5979 4.52678 13.3261 4 12 4Z"
-										fill-opacity="0.87"
-									>
-									</path>
-									<span>
-										<a
-											href="https://goo.gl/maps/hSzxx7GiAhoLtw65A"
-											target="_blank"
-										>
-											C.so Verde 52, 10128 Torino
-										</a>
-									</span>
-								</svg>
-							</li>
-						</li>
-					</ul>
-				</div>
-				<div class="links-container">
-					<h4>Links</h4>
-					<ul>
-						<li>
-							<a href="/">Home</a>
-						</li>
-						<li>
-							<a href="/projects">Projects</a>
-						</li>
-						<li>
-							<a href="/about">About</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="copyright">
-				© Copyright ing. Mario Rossi, Torino - P.I. 123456789
-			</div>
-		</div>
-	</footer>
+<Layout title={title} description={description} activeHeader="contacts">
+  <BoxContainer variant="secondary">
+    <div class="blue-content">
+      <p>Parlami del tuo prossimo progetto</p>
+      <ul class="contacts">
+        <ContactListItem contactType="phone" value={contacts.phone} />
+        <ContactListItem contactType="mobile" value={contacts.mobile} />
+        {
+          contacts.emails.map((email) => (
+            <ContactListItem key={email} contactType="email" value={email} />
+          ))
+        }
+        <ContactListItem
+          contactType="address"
+          value={contacts.address}
+          href={contacts.addressHref}
+        />
+      </ul>
+    </div>
+  </BoxContainer>
 
-	<style>
-		.blue-box-container {
-			background-color: var(--palette-blue);
-			color: var(--palette-white);
-		}
-		.map {
-			width: 100%;
-			height: 40vw;
-			background-image: url("/public/maps.png");
-			background-size: cover;
-			display: block;
-			max-height: 300px;
-			min-height: 248px;
-			background-position: center;
-		}
-		.contacts {
-			list-style: none;
-			padding-inline-start: 0;
-			margin-block-end: 0;
-		}
-		.contacts li {
-			display: flex;
-			flex-direction: row;
-			gap: var(--space-s);
-		}
-		.box-content img {
-			max-width: 100%;
-		}
+  <BoxContainer variant="main">
+    <a href={contacts.addressHref} target="_blank" class="map">
+      <Image src={map} alt={contacts.address ?? ""} />
+    </a>
+  </BoxContainer>
+  <style>
+    .blue-content {
+      display: flex;
+      flex-direction: row;
+      gap: var(--space-s);
+    }
+    .map {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border-radius: 2px;
+    }
+    .contacts {
+      list-style: none;
+      padding-inline-start: 0;
+      margin-block-end: 0;
+      flex: 0 0 50%;
+    }
+    .contacts li {
+      display: flex;
+      flex-direction: row;
+      gap: var(--space-s);
+    }
+    .map img {
+      object-fit: cover;
+      max-width: 100%;
+      height: 30vh;
+      transform: scale(1.5);
+    }
 
-		footer {
-			background-color: var(--palette-black);
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			color: var(--palette-white);
-			fill: var(--palette-white);
-			padding: var(--space-xs);
-		}
-		footer h4 {
-			text-transform: capitalize;
-			margin-block-start: 0;
-			margin-block-end: var(--space-3xs);
-		}
-		.footer-box {
-			max-width: 600px;
-		}
-		.links-container li {
-			list-style: none;
-		}
-		.links-container {
-			border-left: 1px solid var(--palette-white-opacity);
-			padding-inline-start: var(--space-xs);
-		}
-		.links-container ul {
-			padding-inline-start: 0;
-		}
-		.list-container {
-			display: flex;
-			flex-direction: row;
-			text-align: start;
-			gap: var(--space-m);
-			justify-content: space-between;
-		}
-		.list-container li {
-			margin-block-start: var(--space-3xs);
-			margin-block-end: var(--space-3xs);
-		}
-		.list-container ul {
-			margin-block-start: 0;
-		}
-		.copyright {
-			padding-block-start: var(--space-s);
-		}
-		.header-container {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
-		.logo-header {
-			margin-block-start: var(--space-m);
-		}
-		.menu-header {
-			list-style: none;
-			display: flex;
-			flex-direction: row;
-			gap: var(--space-xl);
-			justify-content: space-between;
-			max-width: 600px;
-			min-width: 280px;
-			padding-inline-start: 0;
-			font-weight: var(--font-weight-bold);
-			font-size: var(--step-2);
-		}
-		.menu-header li {
-			font-size: var(--step-2);
-		}
-		.menu-header a {
-			text-decoration: none;
-		}
-		.menu-active {
-			color: var(--palette-blue);
-		}
+    p {
+      font-size: 36px;
+      font-weight: var(--font-weight-bold);
+      flex: 0 0 50%;
+    }
 
-		@media screen and (max-width: 600px) {
-			.links-container {
-				display: none;
-			}
-			.list-container {
-				justify-content: center;
-			}
-			.menu-header {
-				gap: var(--space-s);
-			}
-			.menu-header li {
-				font-size: var(--step-0);
-			}
-		}
-		@media screen and (min-width: 600px) and (max-width: 800px) {
-			.list-container {
-				justify-content: space-around;
-			}
-		}
-	</style>
+    @media screen and (max-width: 300px) {
+      .map img {
+        transform: scale(3);
+      }
+    }
+    @media screen and (max-width: 600px) {
+      p {
+        font-size: 28px;
+        flex: 0 0 10%;
+      }
+      .blue-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        /* max-width: 100%; */
+      }
+    }
+  </style>
 </Layout>

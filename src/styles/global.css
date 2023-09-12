@@ -47,6 +47,12 @@
 	--font-weight-regular: 300;
 	--font-weight-bold: 500;
 	--font-weight-bolder: 700;
+
+	--breakpoint-600: 600px;
+	--breakpoint-280: 280px;
+	--breakpoint-300: 300px;
+	--breakpoint-248: 248px;
+	--breakpoint-200: 200px;
 }
 
 html {
@@ -63,7 +69,10 @@ body {
 	background-color: var(--background);
 	margin: 0;
 }
-
+html, 
+body {
+	height: 100%;
+}
 * {
 	box-sizing: border-box;
 }
@@ -107,6 +116,7 @@ h4 {
 }
 svg {
 	height: 1em;
+	
 }
 
 ul {
@@ -134,29 +144,4 @@ p {
 	min-height: 30vh;
 	padding: 60px;
 	font-size: var(--step-1);
-}
-
-.box-content {
-	display: flex;
-	width: 600px;
-}
-
-.primary-button {
-	color: var(--palette-white);
-	background-color: var(--palette-blue);
-	padding: 6px 16px;
-	border-radius: 4px;
-	text-decoration: none;
-	text-transform: uppercase;
-	font-size: var(--step--1);
-	font-weight: 500;
-	letter-spacing: 0.4px;
-	transition: background-color 0.25s ease-in-out;
-	display: flex;
-	gap: var(--space-2xs);
-	align-items: center;
-}
-.primary-button:hover {
-	background-color: var(--palette-blue-hover);
-	color: var(--palette-white);
 }

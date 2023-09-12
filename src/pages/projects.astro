@@ -1,166 +1,118 @@
 ---
+import { getImage, ImageMetadata } from "astro:assets";
 import { getCollection } from "astro:content";
-import { Icon } from "astro-icon";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
-import Nav from "../components/Nav.astro";
-import Section from "../components/Section.astro";
-import type { NavItem } from "../components/Nav.astro";
+import BoxContainer from "../components/BoxContainer.astro";
 
 const title = "Mario Rossi";
 const description = "Mario Rossi";
 
-const nav: NavItem[] = [];
+const allProjects = await getCollection("projects");
+const optimizedBackgroundImages: ImageMetadata[] = [];
+for (let i = 0; i < allProjects.length; i++) {
+  const project = allProjects[i];
+
+  const image = await getImage({
+    src: project.data.image,
+    width: 600,
+    height: 250,
+  });
+  optimizedBackgroundImages.push(image);
+}
 ---
 
-<Layout title={title} description={description}>
-	<!-- <Nav items={nav} />
-	<Header title={title}>
-		{"Repellendus in suscipit est repellat quisquam non voluptatibus."}
-	</Header> -->
-	<section class="box-container main-box-container">
-		<div class="box-content main-box-content">
-			<a class="project" href="/projects/1">
-				
-				<div class="project-title">
-					<h3>Project 1</h3>
-					<p>Enim quia vero</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/2">
-				
-				<div class="project-title">
-					<h3>Project 2</h3>
-					<p>Distinctio dolorum delenit</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/3">
-				
-				<div class="project-title">
-					<h3>Project 3</h3>
-					<p>
-						Voluptatem dolor voluptas</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/4">
-				
-				<div class="project-title">
-					<h3>Project 4</h3>
-					<p>Sint ut officiis suscipit</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/5">
-				
-				<div class="project-title">
-					<h3>Project 5</h3>
-					<p>Est veniam dignissimos</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/6">
-				
-				<div class="project-title">
-					<h3>Project 6</h3>
-					<p>Doloremque impedit laudantium</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/7">
-				
-				<div class="project-title">
-					<h3>Project 7</h3>
-					<p>Non nulla consequatur</p>
-				</div>
-			</a>
-
-			<a class="project" href="/projects/8">
-				
-				<div class="project-title">
-					<h3>Project 8</h3>
-					<p>Culpa omnis ut rem eius</p>
-				</div>
-			</a>
-		</div>
-	</section>
+<Layout title={title} description={description} activeHeader="projects">
+  <BoxContainer variant="wrapper">
+    <div class="projects">
+      {
+        allProjects.map((section, i) => (
+          <a
+            class="project"
+            href={`/projects/${section.slug}`}
+            style={`background-image: url('${optimizedBackgroundImages[i].src}');`}
+          >
+            <div class="project-title">
+              <h3>{section.data.title}</h3>
+              <p>{section.data.description}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </BoxContainer>
 </Layout>
 
 <style>
-	.main-box-content {
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		align-items: center;
-		gap: var(--space-m);
+  :global(.projects) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-m);
+    width: 100%;
+    padding-block-end: var(--space-m);
+    padding-inline-start: var(--space-m);
+    padding-inline-end: var(--space-m);
+  }
 
-	}
+  .project {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    position: relative;
+    min-height: var(--breakpoint-200);
+    background-size: cover;
+    background-position: center;
+    flex: 1 1 100%;
+  }
 
-	.project {
-		display: flex;
-		flex-direction: column;
-		text-decoration: none;
-		position:relative;
-		min-height: 200px;
-		background-image: url(/public/project-0.png);
-		background-size: cover;
-    	background-position: center;
-		flex: 1 1 100%;	
-	}
+  .project:hover .project-title {
+    opacity: 1;
+  }
 
-	.project:hover .project-title {
-		opacity: 1;
-	}
+  .project:nth-of-type(3n) {
+    flex: 1 1 100%;
+  }
 
-	.project:nth-of-type(3n) {
-		flex: 1 1 100%
-	}
+  .project-title {
+    color: var(--palette-white);
+    gap: var(--space-xs);
+    padding: var(--space-2xs);
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: var(--palette-blue-opacity);
+  }
 
-	.project-title {
-		color: var(--palette-white);
-		gap: var(--space-xs);
-		padding: var(--space-2xs);
-		position: absolute;
-    	bottom: 0px;
-    	left: 0px;
-    	right: 0px;
-		background-color: var(--palette-blue-opacity);
-	}
+  .project-title > p {
+    font-weight: var(--font-weight-regula);
+    margin-block-start: var(--space-2xs);
+    margin-block-end: var(--space-3xs);
+  }
 
-	.project-title>p {
-		font-weight: 300;
-		margin-block-start: var(--space-2xs);
-		margin-block-end: var(--space-3xs);
-	}
+  .project-title > h3 {
+    font-weight: var(--font-weight-bold);
+    text-transform: none;
+  }
 
-	.project-title>h3{
-		font-weight: 500;
-		text-transform: none;
-	}
-
-
-
-
-	@media screen and (min-width: 600px) {
-		.project {
-			flex: 1 1 40%;	
-		}
-		.project-title {
-			opacity: 0;
-			top: 0;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			transition: opacity 0.25s ease-in-out;
-			text-align: center;
-			gap: 0;
-		}
-		.project-title>p {
-			margin-block-start: 0;
-		}
-	}
+  @media screen and (min-width: 600px) {
+    .project {
+      flex: 1 1 40%;
+    }
+    .project-title {
+      opacity: 0;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: opacity 0.25s ease-in-out;
+      text-align: center;
+      gap: 0;
+    }
+    .project-title > p {
+      margin-block-start: 0;
+    }
+  }
 </style>
-

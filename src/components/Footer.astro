@@ -1,43 +1,108 @@
 ---
-export interface Props {
-  id: string;
-  title: string;
-}
+import { getCollection } from "astro:content";
+import ContactListItem from "./ContactListItem.astro";
+import { Image } from "astro:assets";
+import logoFull from "../assets/logo-full.svg";
 
-const { id, title } = Astro.props;
+const allContacts = await getCollection("contacts");
+const contacts = allContacts[0]?.data;
 ---
 
-<footer id={id}>
-  <h2>{title}</h2>
-  <dl>
-    <dt>Head office</dt>
-    <dd>C.so Galileo Ferraris 145, 10128 Torino</dd>
-    <dt>Email</dt>
-    <dd><a href="mailto:m.rossi@ingrossi.it">m.rossi@ingrossi.it</a></dd>
-  </dl>
+<footer class="fixed">
+  <div class="footer-box">
+    <div class="footer-logo">
+      <Image src={logoFull} alt="" />
+    </div>
+    <div class="list-container">
+      <div>
+        <h3>Contacts</h3>
+        <ul class="contacts">
+          <ContactListItem contactType="phone" value={contacts.phone} />
+          <ContactListItem contactType="mobile" value={contacts.mobile} />
+          {
+            contacts.emails.map((email) => (
+              <ContactListItem key={email} contactType="email" value={email} />
+            ))
+          }
+          <ContactListItem
+            contactType="address"
+            value={contacts.address}
+            href={contacts.addressHref}
+          />
+        </ul>
+      </div>
+      <div class="links-separator"></div>
+      <div class="links-container">
+        <h3>Links</h3>
+        <ul>
+          {
+            contacts.links.map((link) => (
+              <li>
+                <a href={link.href}>{link.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      © Copyright ing. Mario Rossi, Torino - P.I. 123456789
+    </div>
+  </div>
 </footer>
 
 <style>
-  dl {
+  footer {
+    background-color: var(--palette-black);
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: row;
+    justify-content: center;
+    color: var(--palette-white);
+    fill: var(--palette-white);
+    padding: var(--space-xs);
+    margin-block-start: auto;
+  }
+  footer h3 {
+    text-transform: capitalize;
+    margin-block-start: 0;
+    margin-block-end: var(--space-3xs);
+  }
+  .footer-box {
+    max-width: var(--breakpoint-600);
+  }
+  .footer-logo {
+    margin-block-end: var(--space-xs);
+  }
+  .links-container li {
+    list-style: none;
+  }
+  .links-container {
+    padding-inline-start: var(--space-3xs);
+    padding-inline-end: var(--space-3xs);
+  }
+  .list-container {
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+    align-items: stretch;
+    justify-content: space-around;
+  }
+  .links-separator {
+    width: 1px;
+    border-left: 1px solid var(--palette-white-opacity);
+  }
+  .list-container ul {
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    list-style: none;
+  }
+  .copyright {
+    padding-block-start: var(--space-s);
   }
 
-  dd,
-  dt {
-    margin: var(--space-2xs) 0;
-  }
-
-  dt {
-    flex: 0 1 35%;
-    text-align: right;
-    font-weight: var(--font-weight-bold);
-    padding-inline-end: var(--space-2xs-xs);
-  }
-
-  dd {
-    flex: 0 0 65%;
-    text-align: left;
-    padding-inline-start: var(--space-2xs-xs);
+  @media screen and (min-width: 600px) and (max-width: 800px) {
+    .list-container {
+      justify-content: space-around;
+    }
   }
 </style>
