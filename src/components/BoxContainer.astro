@@ -13,7 +13,9 @@ const optimizedBackgroundImage = backgroundImage
 
 <section
   class={`box-container ${variant}-box-container`}
-  style={`background-image: url(${optimizedBackgroundImage?.src})`}
+  style={optimizedBackgroundImage
+    ? `background-image: url(${optimizedBackgroundImage.src})`
+    : ""}
 >
   <div class={`box-content ${variant}-box-content`}>
     <slot />

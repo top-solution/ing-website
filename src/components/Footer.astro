@@ -15,7 +15,7 @@ const contacts = allContacts[0]?.data;
     </div>
     <div class="list-container">
       <div>
-        <h4>Contacts</h4>
+        <h3>Contacts</h3>
         <ul class="contacts">
           <ContactListItem contactType="phone" value={contacts.phone} />
           <ContactListItem contactType="mobile" value={contacts.mobile} />
@@ -33,7 +33,7 @@ const contacts = allContacts[0]?.data;
       </div>
       <div class="links-separator"></div>
       <div class="links-container">
-        <h4>Links</h4>
+        <h3>Links</h3>
         <ul>
           {
             contacts.links.map((link) => (
@@ -62,7 +62,7 @@ const contacts = allContacts[0]?.data;
     padding: var(--space-xs);
     margin-block-start: auto;
   }
-  footer h4 {
+  footer h3 {
     text-transform: capitalize;
     margin-block-start: 0;
     margin-block-end: var(--space-3xs);

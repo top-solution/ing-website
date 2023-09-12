@@ -37,7 +37,7 @@ const optimizedBackgroundImage = await getImage({ src: map });
 
   <BoxContainer variant="main">
     <a href={contacts.addressHref} target="_blank" class="map">
-      <Image src={map} alt="" />
+      <Image src={map} alt={contacts.address ?? ""} />
     </a>
   </BoxContainer>
   <style>
